@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Xstamina Training Lab – Studio privato di Personal Training a Roma, zona Coppedè. Allenamento su misura e Valutazione Corporea. Via Agri 15.">
+<meta name="keywords" content="personal trainer roma, personal training coppedè, studio fitness roma, xstamina, allenamento personalizzato roma, valutazione corporea roma">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Xstamina Training Lab – Personal Training Roma">
+<meta property="og:description" content="Studio privato di personal training nel cuore di Coppedè. Trainer certificati, programmi su misura, risultati reali.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.xstamina.it">
+<meta property="og:image" content="https://www.xstamina.it/assets/hero-emilio.jpg">
+<title>Xstamina Training Lab – Personal Training Studio Roma</title>
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   XSTAMINA TRAINING LAB — Brand colours: #DD6731 / black / white
+============================================================ */
+:root{
+    --orange:      #DD6731;
+    --orange-d:    #c4521f;
+    --orange-l:    #e8814f;
+    --orange-dim:  rgba(221,103,49,0.10);
+    --orange-line: rgba(221,103,49,0.28);
+    --ink:         #16120f;   /* warm near-black */
+    --ink-2:       #1d1916;
+    --paper:       #ffffff;
+    --paper-2:     #f6f3ef;   /* warm off-white */
+    --paper-3:     #efeae3;
+    --text:        #2a2521;
+    --text-sub:    #7a716a;
+    --text-mut:    #a89f97;
+    --border:      #e7e1d9;
+    --border-d:    rgba(255,255,255,0.10);
+    --fdisp: 'Archivo', sans-serif;
+    --fbody: 'Outfit', sans-serif;
+    --mw: 1280px;
+    --spy: clamp(72px,9vw,128px);
+    --navh: 76px;
+    --wa: #25D366;
+    --wa-d: #1BB756;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--fbody);
+    font-weight:400;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+
+/* TYPE UTILITIES */
+.label{
+    font-family:var(--fdisp);
+    font-weight:700;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--orange);
+}
+.container{
+    width:100%;
+    max-width:var(--mw);
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,60px);
+}
+
+/* BUTTONS */
+.btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 32px;
+    font-family:var(--fdisp);font-weight:700;
+    font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;
+    cursor:pointer;border:none;transition:all .25s ease;white-space:nowrap;
+    clip-path:polygon(9px 0,100% 0,calc(100% - 9px) 100%,0 100%);
+}
+.btn-wa{background:var(--wa);color:#fff;}
+.btn-wa:hover{background:var(--wa-d);transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,211,102,.32);}
+.btn-orange{background:var(--orange);color:#fff;}
+.btn-orange:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:0 10px 30px rgba(221,103,49,.35);}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--border);clip-path:polygon(9px 0,100% 0,calc(100% - 9px) 100%,0 100%);}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-2px);}
+.btn-ghost-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25);}
+.btn-ghost-light:hover{border-color:var(--orange);color:var(--orange-l);transform:translateY(-2px);}
+.wa-i{width:18px;height:18px;flex-shrink:0;}
+
+/* ============================================================
+   PROMO TOP BAR  (controllata da CONFIG.promoAttiva)
+============================================================ */
+.promo-bar{
+    display:none;
+    background:var(--orange);
+    color:#fff;
+    text-align:center;
+    padding:11px 20px;
+    font-family:var(--fdisp);
+    font-weight:600;
+    font-size:0.84rem;
+    letter-spacing:0.03em;
+    position:relative;
+    z-index:1100;
+}
+.promo-bar.on{display:block;}
+.promo-bar a{
+    text-decoration:underline;
+    text-underline-offset:3px;
+    font-weight:800;
+    margin-left:6px;
+}
+body.has-promo{--promo-h:42px;}
+
+/* ============================================================
+   NAV
+============================================================ */
+.nav{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    height:var(--navh);display:flex;align-items:center;
+    transition:box-shadow .35s ease;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+}
+.nav.solid{box-shadow:0 2px 24px rgba(0,0,0,.06);}
+.nav .container{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:34px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:34px;list-style:none;}
+.nav-links a{
+    font-family:var(--fdisp);font-weight:600;
+    font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--text);transition:color .2s;
+}
+.nav-links a:hover{color:var(--orange);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-wa{
+    background:var(--wa);color:#fff;
+    font-family:var(--fdisp);font-weight:700;
+    font-size:0.74rem;letter-spacing:0.08em;text-transform:uppercase;
+    padding:10px 20px;display:flex;align-items:center;gap:8px;transition:all .25s;
+    clip-path:polygon(7px 0,100% 0,calc(100% - 7px) 100%,0 100%);white-space:nowrap;
+}
+.nav-wa:hover{background:var(--wa-d);transform:translateY(-1px);}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);transition:.3s;transform-origin:center;}
+.burger.x span:nth-child(1){transform:rotate(45deg) translate(4.6px,4.6px);}
+.burger.x span:nth-child(2){opacity:0;}
+.burger.x span:nth-child(3){transform:rotate(-45deg) translate(4.6px,-4.6px);}
+.mob{
+    position:fixed;top:var(--navh);left:0;right:0;
+    background:rgba(255,255,255,.98);backdrop-filter:blur(16px);
+    padding:28px clamp(20px,5vw,60px) 36px;z-index:999;
+    transform:translateY(-12px);opacity:0;pointer-events:none;transition:.3s;
+    border-bottom:1px solid var(--border);
+}
+.mob.open{transform:translateY(0);opacity:1;pointer-events:all;}
+.mob ul{list-style:none;display:flex;flex-direction:column;gap:20px;margin-bottom:24px;}
+.mob a{font-family:var(--fdisp);font-weight:700;font-size:1.15rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);}
+
+/* ============================================================
+   HERO  (split: testo + foto)
+============================================================ */
+.hero{
+    position:relative;
+    min-height:100vh;
+    padding-top:var(--navh);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:stretch;
+}
+.hero-text{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:48px clamp(20px,5vw,72px);
+    position:relative;
+}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:26px;opacity:0;animation:up .8s ease forwards .2s;}
+.hero-eyebrow::before{content:'';width:34px;height:2px;background:var(--orange);}
+.hero h1{
+    font-family:var(--fdisp);font-weight:900;
+    font-size:clamp(40px,5vw,68px);line-height:0.98;
+    letter-spacing:-0.02em;color:var(--ink);
+    opacity:0;animation:up .8s ease forwards .35s;
+}
+.hero h1 .o{color:var(--orange);}
+.hero-sub{
+    font-size:clamp(1rem,1.3vw,1.15rem);font-weight:300;
+    color:var(--text-sub);max-width:480px;line-height:1.7;
+    margin:26px 0 38px;opacity:0;animation:up .8s ease forwards .5s;
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;opacity:0;animation:up .8s ease forwards .65s;}
+.hero-meta{
+    display:flex;flex-wrap:wrap;gap:24px;margin-top:54px;padding-top:32px;
+    border-top:1px solid var(--border);opacity:0;animation:up .8s ease forwards .8s;
+}
+.hero-meta div{display:flex;align-items:center;gap:9px;font-size:0.84rem;color:var(--text-sub);}
+.hero-meta svg{color:var(--orange);flex-shrink:0;}
+.hero-photo{
+    position:relative;background:var(--ink);overflow:hidden;
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+
+/* ============================================================
+   ABOUT STRIP
+============================================================ */
+.about{padding:var(--spy) 0;background:var(--paper);position:relative;overflow:hidden;}
+.about-x{
+    position:absolute;right:-60px;top:50%;transform:translateY(-50%);
+    width:380px;opacity:0.05;pointer-events:none;
+}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;}
+.about h2{
+    font-family:var(--fdisp);font-weight:800;
+    font-size:clamp(28px,3.4vw,44px);line-height:1.08;color:var(--ink);
+    letter-spacing:-0.01em;margin:12px 0 22px;
+}
+.about h2 em{font-style:normal;color:var(--orange);}
+.about p{color:var(--text-sub);font-size:1.02rem;line-height:1.8;margin-bottom:16px;}
+.about-points{display:flex;flex-direction:column;gap:18px;margin-top:8px;}
+.about-point{display:flex;gap:16px;align-items:flex-start;}
+.about-point-ic{
+    width:44px;height:44px;flex-shrink:0;background:var(--orange-dim);
+    border:1px solid var(--orange-line);display:flex;align-items:center;justify-content:center;color:var(--orange);
+}
+.about-point h4{font-family:var(--fdisp);font-weight:700;font-size:1rem;color:var(--ink);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;}
+.about-point p{font-size:0.9rem;margin:0;line-height:1.55;}
+
+/* ============================================================
+   SERVICES
+============================================================ */
+.services{padding:var(--spy) 0;background:var(--paper-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.sec-head{margin-bottom:52px;}
+.sec-head.center{text-align:center;}
+.sec-head h2{
+    font-family:var(--fdisp);font-weight:800;
+    font-size:clamp(30px,4vw,50px);text-transform:uppercase;
+    letter-spacing:-0.01em;line-height:1.04;color:var(--ink);margin-top:10px;
+}
+.sec-head h2 em{font-style:normal;color:var(--orange);}
+.sec-head p.intro{color:var(--text-sub);max-width:560px;margin-top:14px;font-size:1rem;}
+.sec-head.center p.intro{margin-left:auto;margin-right:auto;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc{
+    background:var(--paper);border:1px solid var(--border);
+    padding:42px 34px;position:relative;overflow:hidden;
+    transition:transform .35s ease,box-shadow .35s ease,border-color .35s;
+}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.svc:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.08);border-color:transparent;}
+.svc:hover::before{transform:scaleX(1);}
+.svc-num{font-family:var(--fdisp);font-weight:900;font-size:2.6rem;color:var(--paper-3);line-height:1;margin-bottom:18px;}
+.svc-ic{width:42px;height:42px;color:var(--orange);margin-bottom:20px;}
+.svc h3{font-family:var(--fdisp);font-weight:700;font-size:1.18rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);margin-bottom:13px;}
+.svc p{font-size:0.9rem;color:var(--text-sub);line-height:1.72;margin-bottom:26px;}
+.svc-link{font-family:var(--fdisp);font-weight:700;font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);display:inline-flex;align-items:center;gap:8px;transition:gap .2s;}
+.svc-link:hover{gap:14px;}
+.svc-link::after{content:'→';}
+
+/* ============================================================
+   STATS  (dark band)
+============================================================ */
+.stats{padding:clamp(64px,8vw,100px) 0;background:var(--ink);position:relative;overflow:hidden;}
+.stats-x{position:absolute;left:-80px;top:50%;transform:translateY(-50%);width:420px;opacity:0.06;pointer-events:none;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative;z-index:1;}
+.stat{text-align:center;}
+.stat-v{font-family:var(--fdisp);font-weight:900;font-size:clamp(40px,4.4vw,66px);color:var(--orange);line-height:1;}
+.stat-v .pre{color:#fff;}
+.stat-l{font-size:0.82rem;font-weight:300;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-top:12px;}
+
+/* ============================================================
+   VIDEO
+============================================================ */
+.video{padding:var(--spy) 0;background:var(--paper);}
+.video-frame{
+    position:relative;width:100%;max-width:980px;margin:0 auto;
+    aspect-ratio:16/9;background:var(--ink);overflow:hidden;
+    border:1px solid var(--border);
+}
+.video-frame iframe{width:100%;height:100%;border:none;display:block;}
+.video-ph{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:18px;
+    background:
+        linear-gradient(135deg, rgba(221,103,49,.18), rgba(0,0,0,.4)),
+        var(--ink);
+    color:#fff;text-align:center;padding:24px;
+}
+.video-ph .play{
+    width:74px;height:74px;border-radius:50%;background:var(--orange);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 40px rgba(221,103,49,.5);
+}
+.video-ph .play svg{width:28px;height:28px;color:#fff;margin-left:4px;}
+.video-ph p{font-family:var(--fdisp);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;font-size:0.9rem;color:rgba(255,255,255,.7);}
+
+/* ============================================================
+   TRAINERS
+============================================================ */
+.trainers{padding:var(--spy) 0;background:var(--paper-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tr{position:relative;overflow:hidden;background:var(--ink);aspect-ratio:3/4;transition:transform .35s ease;cursor:pointer;}
+.tr-more{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(221,103,49,.92);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;line-height:1;opacity:0;transform:scale(.8);transition:.25s;z-index:2;}
+.tr:hover .tr-more{opacity:1;transform:scale(1);}
+.tr-hint{font-family:var(--fdisp);font-weight:600;font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange-l);margin-top:8px;opacity:.9;}
+.tr:hover{transform:translateY(-6px);}
+.tr img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.tr:hover img{transform:scale(1.05);}
+.tr-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--fdisp);font-weight:900;font-size:2.4rem;color:rgba(255,255,255,.14);background:linear-gradient(160deg,#26211d,#16120f);}
+.tr-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 45%,transparent 72%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;}
+.tr-role{font-size:0.66rem;color:var(--orange-l);font-weight:400;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;}
+.tr-name{font-family:var(--fdisp);font-weight:700;font-size:0.92rem;letter-spacing:0.04em;text-transform:uppercase;color:#fff;line-height:1.2;margin-bottom:9px;}
+.tr-ig{display:inline-flex;align-items:center;gap:5px;font-size:0.66rem;color:rgba(255,255,255,.6);transition:color .2s;}
+.tr-ig:hover{color:var(--orange-l);}
+.tr-ig svg{width:12px;height:12px;}
+
+/* TRAINER MODAL */
+.tr-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(10,8,6,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s;}
+.tr-modal.open{opacity:1;pointer-events:all;}
+.tr-modal-box{background:var(--paper);max-width:600px;width:100%;max-height:88vh;overflow-y:auto;padding:40px;position:relative;transform:translateY(20px);transition:transform .3s;}
+.tr-modal.open .tr-modal-box{transform:translateY(0);}
+.tr-modal-close{position:absolute;top:16px;right:16px;width:38px;height:38px;border:none;background:var(--paper-2);color:var(--ink);font-size:22px;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s;line-height:1;}
+.tr-modal-close:hover{background:var(--orange);color:#fff;}
+.tr-modal-head{display:flex;gap:18px;align-items:center;margin-bottom:24px;padding-right:34px;}
+.tr-modal-avatar{width:64px;height:64px;border-radius:50%;background:var(--orange-dim);border:1.5px solid var(--orange-line);display:flex;align-items:center;justify-content:center;font-family:var(--fdisp);font-weight:800;font-size:1.3rem;color:var(--orange);flex-shrink:0;overflow:hidden;}
+.tr-modal-avatar img{width:100%;height:100%;object-fit:cover;}
+.tr-modal-role{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange);font-family:var(--fdisp);font-weight:700;margin-bottom:3px;}
+.tr-modal-head h3{font-family:var(--fdisp);font-weight:800;font-size:1.4rem;color:var(--ink);text-transform:uppercase;letter-spacing:0.02em;line-height:1.1;}
+.tr-modal-bio{color:var(--text-sub);line-height:1.75;font-size:0.95rem;margin-bottom:26px;}
+.tr-modal-bio p{margin-bottom:12px;}
+.tr-modal-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.tr-modal-actions .btn{justify-content:center;}
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+.reviews{padding:var(--spy) 0;background:var(--paper);}
+.rev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.rev{background:var(--paper-2);border:1px solid var(--border);padding:38px;transition:border-color .3s,transform .3s;position:relative;}
+.rev:hover{border-color:var(--orange-line);transform:translateY(-3px);}
+.rev-stars{color:var(--orange);font-size:0.95rem;letter-spacing:2px;margin-bottom:16px;}
+.rev-txt{font-size:1.05rem;line-height:1.7;color:var(--text);margin-bottom:22px;}
+.rev-foot{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid var(--border);}
+.rev-av{width:40px;height:40px;border-radius:50%;background:var(--orange-dim);border:1px solid var(--orange-line);display:flex;align-items:center;justify-content:center;font-family:var(--fdisp);font-weight:700;font-size:0.82rem;color:var(--orange);flex-shrink:0;}
+.rev-name{font-family:var(--fdisp);font-weight:700;font-size:0.88rem;color:var(--ink);}
+.rev-meta{font-size:0.74rem;color:var(--text-mut);}
+.rev-google{text-align:center;margin-top:46px;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.rev-google-stars{color:var(--orange);font-size:1.5rem;letter-spacing:4px;}
+.rev-google p{color:var(--text-sub);font-size:1.08rem;}
+.rev-google strong{color:var(--ink);font-weight:600;}
+
+/* ============================================================
+   CTA BAND
+============================================================ */
+.cta{padding:clamp(60px,8vw,96px) 0;background:var(--orange);position:relative;overflow:hidden;}
+.cta-x{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:360px;opacity:0.12;pointer-events:none;filter:brightness(0) invert(1);}
+.cta .container{display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-copy span{font-family:var(--fbody);font-weight:300;font-size:1.05rem;color:rgba(255,255,255,.85);display:block;margin-bottom:6px;}
+.cta-copy h2{font-family:var(--fdisp);font-weight:900;font-size:clamp(26px,3.4vw,44px);text-transform:uppercase;color:#fff;line-height:1.04;letter-spacing:-0.01em;}
+.btn-ondark{background:#fff;color:var(--ink);font-family:var(--fdisp);font-weight:800;font-size:0.86rem;letter-spacing:0.08em;text-transform:uppercase;padding:18px 40px;display:inline-flex;align-items:center;gap:11px;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:all .25s;flex-shrink:0;white-space:nowrap;}
+.btn-ondark:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.22);}
+.btn-ondark svg{color:var(--wa);}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+.contact{padding:var(--spy) 0;background:var(--paper-2);border-top:1px solid var(--border);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:24px;}
+.ci{display:flex;gap:18px;align-items:flex-start;}
+.ci-ic{width:46px;height:46px;background:var(--orange-dim);border:1px solid var(--orange-line);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--orange);}
+.ci-l{font-family:var(--fdisp);font-weight:700;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:4px;}
+.ci-v{font-size:0.96rem;color:var(--ink);line-height:1.55;}
+.ci-v a:hover{color:var(--orange);}
+.ci-v small{color:var(--text-sub);}
+.cwa{background:var(--ink);padding:30px;margin-top:6px;}
+.cwa h3{font-family:var(--fdisp);font-weight:700;font-size:1.05rem;letter-spacing:0.05em;text-transform:uppercase;color:#fff;margin-bottom:8px;}
+.cwa p{font-size:0.85rem;color:rgba(255,255,255,.62);line-height:1.6;margin-bottom:20px;}
+.map{height:480px;overflow:hidden;border:1px solid var(--border);}
+.map iframe{width:100%;height:100%;border:none;}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{background:var(--ink);padding:48px 0 32px;}
+.foot-row{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:28px;padding-bottom:30px;border-bottom:1px solid var(--border-d);margin-bottom:24px;}
+.foot-logo img{height:36px;margin-bottom:14px;}
+.foot-logo p{font-size:0.82rem;color:rgba(255,255,255,.5);max-width:280px;line-height:1.6;}
+.foot-links{display:flex;gap:30px;list-style:none;flex-wrap:wrap;}
+.foot-links a{font-family:var(--fdisp);font-weight:600;font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:color .2s;}
+.foot-links a:hover{color:var(--orange-l);}
+.foot-social{display:flex;gap:12px;}
+.foot-social a{width:38px;height:38px;border:1px solid var(--border-d);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);transition:all .2s;}
+.foot-social a:hover{border-color:var(--orange);color:var(--orange-l);}
+.foot-copy{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.foot-copy p{font-size:0.72rem;color:rgba(255,255,255,.38);}
+
+/* FLOATING WA */
+.float-wa{position:fixed;bottom:26px;right:26px;z-index:900;width:58px;height:58px;background:var(--wa);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(37,211,102,.42);transition:transform .3s,box-shadow .3s;animation:wp 2.8s infinite;}
+.float-wa:hover{transform:scale(1.12);box-shadow:0 8px 34px rgba(37,211,102,.65);animation:none;}
+.float-wa svg{width:27px;height:27px;color:#fff;}
+@keyframes wp{0%,100%{box-shadow:0 4px 22px rgba(37,211,102,.42);}50%{box-shadow:0 4px 40px rgba(37,211,102,.7);}}
+
+/* ANIM */
+@keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px;}
+}
+@media(max-width:900px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .hero{grid-template-columns:1fr;min-height:auto;}
+    .hero-text{order:2;padding:40px clamp(20px,5vw,72px) 50px;}
+    .hero-photo{order:1;min-height:48vh;}
+    .about-grid{grid-template-columns:1fr;gap:36px;}
+    .tr-grid{grid-template-columns:repeat(2,1fr);}
+    .svc-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;gap:36px;}
+    .rev-grid{grid-template-columns:1fr;}
+    .map{height:320px;}
+    .cta .container{flex-direction:column;align-items:flex-start;}
+    .tr-modal-box{padding:30px 24px;}
+}
+@media(max-width:640px){
+    .tr-grid{grid-template-columns:repeat(2,1fr);}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-meta{flex-direction:column;gap:14px;}
+    .foot-row{flex-direction:column;}
+    .float-wa{bottom:18px;right:18px;width:52px;height:52px;}
+}
+@media(max-width:480px){
+    .hero-ctas{flex-direction:column;align-items:stretch;}
+    .hero-ctas .btn{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PROMO BAR  (si accende/spegne da CONFIG in fondo al file)
+============================================================ -->
+<div class="promo-bar" id="promoBar"></div>
+
+<!-- FLOATING WHATSAPP -->
+<a class="float-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20avere%20informazioni." target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav class="nav" id="nav">
+    <div class="container">
+        <a href="#home" class="nav-logo"><img src="assets/logo.png" alt="Xstamina Training Lab"></a>
+        <ul class="nav-links">
+            <li><a href="#chi-siamo">Chi siamo</a></li>
+            <li><a href="#servizi">Servizi</a></li>
+            <li><a href="#trainer">Trainer</a></li>
+            <li><a href="#recensioni">Recensioni</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+        <div class="nav-right">
+            <a class="nav-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20e%20vorrei%20informazioni." target="_blank" rel="noopener">
+                <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Scrivici
+            </a>
+            <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</nav>
+<div class="mob" id="mob">
+    <ul>
+        <li><a href="#chi-siamo" class="ml">Chi siamo</a></li>
+        <li><a href="#servizi" class="ml">Servizi</a></li>
+        <li><a href="#trainer" class="ml">Trainer</a></li>
+        <li><a href="#recensioni" class="ml">Recensioni</a></li>
+        <li><a href="#contatti" class="ml">Contatti</a></li>
+    </ul>
+    <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20su%20Xstamina." target="_blank" rel="noopener" style="justify-content:center;">Scrivici su WhatsApp</a>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<header class="hero" id="home">
+    <div class="hero-text">
+        <div class="hero-eyebrow"><span class="label">Studio Privato · Roma Coppedè</span></div>
+        <h1>Il tuo personal training,<br>costruito <span class="o">su di te.</span></h1>
+        <p class="hero-sub">Niente sale affollate. Solo tu, il tuo trainer e un programma disegnato sul tuo obiettivo. Nel cuore di Coppedè, dove l'allenamento diventa un risultato misurabile.</p>
+        <div class="hero-ctas">
+            <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20informazioni%20su%20programmi%20e%20disponibilit%C3%A0." target="_blank" rel="noopener">
+                <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Scrivici su WhatsApp
+            </a>
+            <a class="btn btn-ghost" href="#servizi">Scopri i servizi</a>
+        </div>
+        <div class="hero-meta">
+            <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Via Agri 15, Roma — Coppedè</div>
+            <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Lun–Ven 8–21 · Sab 9–13</div>
+        </div>
+    </div>
+    <div class="hero-photo">
+        <img src="assets/hero-emilio.jpg" alt="Allenamento allo studio Xstamina Training Lab">
+    </div>
+</header>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section class="about" id="chi-siamo">
+    <img src="assets/logo-x.png" class="about-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="about-grid">
+            <div class="reveal">
+                <span class="label">Chi siamo</span>
+                <h2>Non una palestra.<br>Un <em>laboratorio</em> di allenamento.</h2>
+                <p>Xstamina Training Lab nasce per chi vuole risultati veri, senza perdersi nella confusione di una sala pesi affollata. Ogni percorso parte da una valutazione, prosegue con un programma su misura e viene seguito in ogni singola sessione da un trainer dedicato.</p>
+                <p>È questo il senso di "Lab": misuriamo, costruiamo, miglioriamo. Niente è lasciato al caso.</p>
+            </div>
+            <div class="about-points reveal d1">
+                <div class="about-point">
+                    <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                    <div><h4>Programmi su misura</h4><p>Obiettivi, tempi e livello di partenza diversi per ognuno. Il programma si adatta a te, non il contrario.</p></div>
+                </div>
+                <div class="about-point">
+                    <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg></div>
+                    <div><h4>Sempre seguito</h4><p>Un trainer dedicato in ogni sessione: corregge, adatta e ti spinge quando serve. Mai solo.</p></div>
+                </div>
+                <div class="about-point">
+                    <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                    <div><h4>Risultati misurabili</h4><p>Valutazione corporea e monitoraggio dei progressi. I miglioramenti si vedono, e si misurano.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+============================================================ -->
+<section class="services" id="servizi">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">I nostri programmi</span>
+            <h2>Cosa <em>offriamo</em></h2>
+            <p class="intro">Tre modi di allenarti con noi. Tutti seguiti, tutti su misura.</p>
+        </div>
+        <div class="svc-grid">
+            <div class="svc reveal">
+                <div class="svc-num">01</div>
+                <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M2 8h4M18 8h4M2 16h4M18 16h4M6 12h12"/></svg>
+                <h3>Personal Training</h3>
+                <p>Un programma costruito interamente attorno a te. Obiettivi, tempi, livello di partenza: niente è standardizzato. Il tuo trainer ti segue in ogni sessione.</p>
+                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Sono%20interessato%20al%20Personal%20Training%20di%20Xstamina.%20Vorrei%20informazioni%20su%20programmi%20e%20costi." target="_blank" rel="noopener">Chiedi informazioni</a>
+            </div>
+            <div class="svc reveal d1">
+                <div class="svc-num">02</div>
+                <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <h3>Personal Training di Coppia</h3>
+                <p>Allenati con il tuo partner, un amico o un familiare. Stessa qualità del personal, condivisa in due. Un trainer dedicato che segue entrambi, motivazione doppia e costo per persona più conveniente.</p>
+                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Siamo%20interessati%20al%20Personal%20Training%20di%20Coppia%20di%20Xstamina.%20Vorremmo%20informazioni%20su%20programmi%20e%20costi." target="_blank" rel="noopener">Chiedi informazioni</a>
+            </div>
+            <div class="svc reveal d2">
+                <div class="svc-num">03</div>
+                <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                <h3>Valutazione Corporea</h3>
+                <p>Analisi della composizione corporea per definire il tuo punto di partenza reale. Massa muscolare, grasso corporeo, obiettivi misurabili. La base di ogni percorso.</p>
+                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20prenotare%20una%20valutazione%20corporea%20presso%20Xstamina%20Training%20Lab." target="_blank" rel="noopener">Prenota la valutazione</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     STATS
+============================================================ -->
+<section class="stats">
+    <img src="assets/logo-x.png" class="stats-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat reveal"><div class="stat-v"><span class="ctr" data-target="100">0</span>%</div><div class="stat-l">Recensioni positive</div></div>
+            <div class="stat reveal d1"><div class="stat-v"><span class="pre">+</span><span class="ctr" data-target="500">0</span></div><div class="stat-l">Persone allenate</div></div>
+            <div class="stat reveal d2"><div class="stat-v"><span class="pre">+</span><span class="ctr" data-target="4000">0</span></div><div class="stat-l">Ore di allenamento annue</div></div>
+            <div class="stat reveal d3"><div class="stat-v"><span class="pre">+</span><span class="ctr" data-target="250">0</span></div><div class="stat-l">Ore prenotabili a settimana</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     VIDEO  (il blocco si attiva da CONFIG.videoId in fondo)
+============================================================ -->
+<section class="video">
+    <div class="container">
+        <div class="sec-head center reveal">
+            <span class="label">Dentro lo studio</span>
+            <h2>Guarda <em>Xstamina</em></h2>
+        </div>
+        <div class="video-frame reveal" id="videoFrame">
+            <div class="video-ph" id="videoPh">
+                <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                <p>Video in arrivo</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TRAINERS
+============================================================ -->
+<section class="trainers" id="trainer">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">Il team</span>
+            <h2>I nostri <em>trainer</em></h2>
+        </div>
+        <div class="tr-grid">
+            <!-- FOTO: sostituisci <div class="tr-ph">XX</div> con
+                 <img src="assets/trainer-nome.jpg" alt="Nome Cognome"> -->
+            <div class="tr reveal" data-tr="emilio">
+                <div class="tr-more">+</div>
+                <div class="tr-ph">EC</div>
+                <div class="tr-ov"><div class="tr-role">Founder</div><div class="tr-name">Emilio Calabrese</div><span class="tr-hint">Scopri di più →</span></div>
+            </div>
+            <div class="tr reveal d1" data-tr="marlena">
+                <div class="tr-more">+</div>
+                <div class="tr-ph">MK</div>
+                <div class="tr-ov"><div class="tr-role">Allenamento Femminile</div><div class="tr-name">Marlena Krasowska</div><span class="tr-hint">Scopri di più →</span></div>
+            </div>
+            <div class="tr reveal d2" data-tr="alex">
+                <div class="tr-more">+</div>
+                <div class="tr-ph">AC</div>
+                <div class="tr-ov"><div class="tr-role">Biologo Nutrizionista</div><div class="tr-name">Alex Calabrese</div><span class="tr-hint">Scopri di più →</span></div>
+            </div>
+            <div class="tr reveal" data-tr="federica">
+                <div class="tr-more">+</div>
+                <div class="tr-ph">FR</div>
+                <div class="tr-ov"><div class="tr-role">Preventiva &amp; Osteopatia</div><div class="tr-name">Federica Recanatesi</div><span class="tr-hint">Scopri di più →</span></div>
+            </div>
+            <div class="tr reveal d1" data-tr="simone">
+                <div class="tr-more">+</div>
+                <div class="tr-ph">SC</div>
+                <div class="tr-ov"><div class="tr-role">Functional Training</div><div class="tr-name">Simone Colangeli</div><span class="tr-hint">Scopri di più →</span></div>
+            </div>
+            <div class="tr reveal d2" data-tr="matteo">
+                <div class="tr-more">+</div>
+                <div class="tr-ph">MA</div>
+                <div class="tr-ov"><div class="tr-role">Functional &amp; CrossFit</div><div class="tr-name">Matteo Antenucci</div><span class="tr-hint">Scopri di più →</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS
+============================================================ -->
+<section class="reviews" id="recensioni">
+    <div class="container">
+        <div class="sec-head center reveal">
+            <span class="label">Cosa dicono i clienti</span>
+            <h2>Storie <em>reali</em></h2>
+        </div>
+        <div class="rev-grid">
+            <div class="rev reveal">
+                <div class="rev-stars">★★★★★</div>
+                <p class="rev-txt">Bellissima palestra in posizione strategica. Struttura con macchinari ottimi e di nuova generazione, sempre super pulita e in ordine. Gli istruttori sono tutti molto preparati e gentili.</p>
+                <div class="rev-foot"><div class="rev-av">ML</div><div><div class="rev-name">Maria Luisa R.</div><div class="rev-meta">Cliente · Google</div></div></div>
+            </div>
+            <div class="rev reveal d1">
+                <div class="rev-stars">★★★★★</div>
+                <p class="rev-txt">Ho scoperto Xstamina 2 mesi fa e non posso farne più a meno! Top l'organizzazione, la pulizia, e soprattutto il personal Emilio che oltre ad essere bravissimo ti segue per tutto l'allenamento.</p>
+                <div class="rev-foot"><div class="rev-av">FS</div><div><div class="rev-name">Federica S.</div><div class="rev-meta">Cliente · Google</div></div></div>
+            </div>
+            <div class="rev reveal d2">
+                <div class="rev-stars">★★★★★</div>
+                <p class="rev-txt">Trainers molto bravi e simpatici. Ambiente accogliente ed elegante, per allenarsi lontano dalla confusione delle palestre tradizionali.</p>
+                <div class="rev-foot"><div class="rev-av">SO</div><div><div class="rev-name">Simona O.</div><div class="rev-meta">Cliente · Google</div></div></div>
+            </div>
+            <div class="rev reveal d3">
+                <div class="rev-stars">★★★★★</div>
+                <p class="rev-txt">Il posto migliore dove mi sia mai allenata! Marlena è una trainer preparata, talentuosa, empatica: ti senti accompagnata in un percorso personalizzato per diventare la versione migliore di te stessa.</p>
+                <div class="rev-foot"><div class="rev-av">VM</div><div><div class="rev-name">Valentina M.</div><div class="rev-meta">Cliente · Google</div></div></div>
+            </div>
+        </div>
+        <div class="rev-google reveal">
+            <div class="rev-google-stars">★★★★★</div>
+            <p>Oltre <strong>140 recensioni a 5 stelle</strong> su Google</p>
+            <a class="btn btn-ghost" href="https://share.google/vsVcb7hCukhKK0erk" target="_blank" rel="noopener">Leggi tutte le recensioni su Google</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     CTA BAND
+============================================================ -->
+<section class="cta">
+    <img src="assets/logo-x.png" class="cta-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="cta-copy">
+            <span>Hai domande? Siamo su WhatsApp.</span>
+            <h2>Inizia adesso.<br>Rispondiamo in pochi minuti.</h2>
+        </div>
+        <a class="btn-ondark" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20e%20vorrei%20iniziare%20un%20percorso%20di%20allenamento.%20Potete%20darmi%20informazioni?" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Apri WhatsApp
+        </a>
+    </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section class="contact" id="contatti">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">Dove siamo</span>
+            <h2>Vieni a <em>trovarci</em></h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="ci reveal">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <div><div class="ci-l">Indirizzo</div><div class="ci-v">Via Agri 15, Roma 00198<br><small>Zona Coppedè / Nomentano</small></div></div>
+                </div>
+                <div class="ci reveal d1">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                    <div><div class="ci-l">Telefono / WhatsApp</div><div class="ci-v"><a href="tel:+393755703958">+39 375 5703958</a></div></div>
+                </div>
+                <div class="ci reveal d2">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                    <div><div class="ci-l">Email</div><div class="ci-v"><a href="mailto:info@xstamina.it">info@xstamina.it</a></div></div>
+                </div>
+                <div class="ci reveal d3">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <div><div class="ci-l">Orari</div><div class="ci-v">Lun – Ven &nbsp;·&nbsp; 8:00 – 21:00<br>Sabato &nbsp;·&nbsp; 9:00 – 13:00<br><small>Domenica chiuso</small></div></div>
+                </div>
+                <div class="cwa reveal">
+                    <h3>Scrivici su WhatsApp</h3>
+                    <p>Il modo più diretto per avere informazioni su programmi, prezzi e disponibilità. Rispondiamo di norma entro pochi minuti.</p>
+                    <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20informazioni%20su%20programmi%20e%20disponibilit%C3%A0." target="_blank" rel="noopener">
+                        <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Avvia conversazione
+                    </a>
+                </div>
+            </div>
+            <!-- MAPPA: src già impostato su Via Agri 15. Per la versione "ufficiale" Google:
+                 maps.google.com → cerca l'attività → Condividi → Incorpora mappa → copia il src -->
+            <div class="map reveal">
+                <iframe src="https://maps.google.com/maps?q=Via%20Agri%2015,%20Roma%2000198&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Xstamina Training Lab — Via Agri 15, Roma"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRAINER MODAL -->
+<div class="tr-modal" id="trModal" role="dialog" aria-modal="true">
+    <div class="tr-modal-box">
+        <button class="tr-modal-close" id="trClose" aria-label="Chiudi">&times;</button>
+        <div class="tr-modal-head">
+            <div class="tr-modal-avatar" id="tmAv"></div>
+            <div>
+                <div class="tr-modal-role" id="tmRole"></div>
+                <h3 id="tmName"></h3>
+            </div>
+        </div>
+        <div class="tr-modal-bio" id="tmBio"></div>
+        <div class="tr-modal-actions" id="tmActions"></div>
+    </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+    <div class="container">
+        <div class="foot-row">
+            <div class="foot-logo">
+                <img src="assets/logo-white.png" alt="Xstamina Training Lab">
+                <p>Studio privato di Personal Training nel cuore di Coppedè, Roma.</p>
+            </div>
+            <ul class="foot-links">
+                <li><a href="#chi-siamo">Chi siamo</a></li>
+                <li><a href="#servizi">Servizi</a></li>
+                <li><a href="#trainer">Trainer</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+            <div class="foot-social">
+                <a href="https://www.instagram.com/xstamina_training_lab/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58 0-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.06 15.6 2.05 15.2 2.05 12s0-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.31 2.2 8.69 2.2 12 2.2zm0 3.65a6.15 6.15 0 100 12.3 6.15 6.15 0 000-12.3zm0 10.15a4 4 0 110-8 4 4 0 010 8zm6.4-10.4a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
+                <a href="https://www.youtube.com/@xstaminatraininglab" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M23.5 6.2a3 3 0 00-2.09-2.09C19.54 3.6 12 3.6 12 3.6s-7.54 0-9.41.51A3 3 0 00.5 6.2 31.2 31.2 0 000 12a31.2 31.2 0 00.5 5.8 3 3 0 002.09 2.09c1.87.51 9.41.51 9.41.51s7.54 0 9.41-.51a3 3 0 002.09-2.09A31.2 31.2 0 0024 12a31.2 31.2 0 00-.5-5.8zM9.6 15.6V8.4l6.27 3.6z"/></svg></a>
+            </div>
+        </div>
+        <div class="foot-copy">
+            <p>© 2025 Xstamina Training Lab® · Via Agri 15, Roma 00198 · P.IVA 15951201001</p>
+            <p>Tutti i diritti riservati</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+/* ============================================================
+   ⚙️  CONFIG — l'unica parte che gestisci tu
+   ============================================================
+   PROMO: metti promoAttiva su true per far comparire la barra
+   arancione in cima al sito. Cambia testo e link come vuoi.
+
+   VIDEO: incolla l'ID del video YouTube (la parte dopo "v=" o
+   dopo "youtu.be/"). Esempio: per
+   https://www.youtube.com/watch?v=AbCdEf12345  ->  videoId: "AbCdEf12345"
+   Lasciandolo vuoto resta il segnaposto "Video in arrivo".
+============================================================ */
+const CONFIG = {
+    promoAttiva: false,
+    promoTesto:  "Promo Estate — la tua prima lezione a 50€, scalabili sul pacchetto.",
+    promoCta:    "Scrivici",
+    promoLink:   "https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20sulla%20promo%20della%20prima%20lezione.",
+
+    videoId: ""   // <-- incolla qui l'ID quando carichi il video
+};
+
+/* ---- PROMO RENDER ---- */
+(function(){
+    if(CONFIG.promoAttiva){
+        const bar = document.getElementById('promoBar');
+        bar.innerHTML = CONFIG.promoTesto +
+            ' <a href="'+CONFIG.promoLink+'" target="_blank" rel="noopener">'+CONFIG.promoCta+' →</a>';
+        bar.classList.add('on');
+        document.body.classList.add('has-promo');
+        // sposta nav e hero sotto la barra
+        const h = bar.offsetHeight;
+        document.getElementById('nav').style.top = h+'px';
+        document.querySelector('.hero-text').style.paddingTop = 'calc(var(--navh) + '+h+'px + 40px)';
+    }
+})();
+
+/* ---- VIDEO RENDER ---- */
+(function(){
+    if(CONFIG.videoId){
+        document.getElementById('videoFrame').innerHTML =
+            '<iframe src="https://www.youtube.com/embed/'+CONFIG.videoId+'?rel=0" '+
+            'title="Xstamina Training Lab" loading="lazy" '+
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
+            'allowfullscreen></iframe>';
+    }
+})();
+
+/* ---- NAV SCROLL ---- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', ()=>nav.classList.toggle('solid', scrollY>40), {passive:true});
+
+/* ---- MOBILE MENU ---- */
+const burger=document.getElementById('burger'), mob=document.getElementById('mob');
+burger.addEventListener('click',()=>{
+    const o=mob.classList.toggle('open');
+    burger.classList.toggle('x',o);
+    document.body.style.overflow=o?'hidden':'';
+});
+document.querySelectorAll('.ml').forEach(a=>a.addEventListener('click',()=>{
+    mob.classList.remove('open');burger.classList.remove('x');document.body.style.overflow='';
+}));
+
+/* ---- SCROLL REVEAL ---- */
+const ro=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target);}
+}),{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+/* ---- COUNTERS ---- */
+function count(el){
+    const t=+el.dataset.target, dur=1700, s=performance.now();
+    (function tick(now){
+        const p=Math.min((now-s)/dur,1), e=1-Math.pow(1-p,3);
+        el.textContent=Math.floor(e*t).toLocaleString('it-IT');
+        if(p<1)requestAnimationFrame(tick); else el.textContent=t.toLocaleString('it-IT');
+    })(s);
+}
+const co=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting&&!e.target.dataset.done){e.target.dataset.done=1;count(e.target);co.unobserve(e.target);}
+}),{threshold:0.6});
+document.querySelectorAll('.ctr').forEach(el=>co.observe(el));
+
+/* ---- TRAINER PROFILES + MODAL ---- */
+const TRAINERS = {
+    emilio:{name:"Emilio Calabrese",init:"EC",role:"Personal Trainer · Founder",ig:"emilio_calabrese",bio:[
+        `Sono Emilio Calabrese, fondatore dello Xstamina Training Lab e laureato in Scienze Motorie presso l'Università degli Studi di Roma "Foro Italico". Ho seguito studi in Scienze della Nutrizione Umana presso l'Università San Raffaele e completato numerosi corsi di formazione specializzati in nutrizione umana e applicata all'attività sportiva. Con 20 anni di esperienza, continuo a formarmi per garantire un approccio sempre aggiornato e mirato alle esigenze dei miei clienti.`,
+        `Il mio metodo si basa su un approccio realistico, che tiene conto delle necessità individuali, dello stile di vita e degli impegni di ciascuno. Non propongo allenamenti estremi sin da subito, ma creo percorsi gestibili e motivanti, che permettono al corpo di adattarsi progressivamente. Il mio obiettivo è spingerti oltre i tuoi limiti, ma in maniera graduale e sostenibile.`,
+        `L'allenamento con me è concreto ed efficace, senza inutili complicazioni. Lavoro per creare un ambiente dove tu possa crescere fisicamente e mentalmente, mantenendo il giusto equilibrio tra sfida e sostenibilità.`
+    ]},
+    marlena:{name:"Marlena Krasowska",init:"MK",role:"Personal Trainer · Allenamento Femminile",ig:"marlena_personal_trainer",bio:[
+        `Sono Marlena e da anni aiuto le donne a scoprire la bellezza di uno stile di vita attivo e sano. Specializzata in allenamenti femminili, sono qui per sfatare i miti e dimostrare che ogni donna può sentirsi forte, in forma e sicura di sé.`,
+        `Mi dedico con passione a creare programmi specifici per dimagrimento, gestione della cellulite, prevenzione dell'osteoporosi e percorsi dedicati alle mamme, dal pre al post gravidanza. Il mio obiettivo è farti sentire al meglio nel tuo corpo, senza stress, con allenamenti che rispettano le tue esigenze e i tuoi ritmi.`
+    ]},
+    alex:{name:"Alex Calabrese",init:"AC",role:"Personal Trainer · Biologo Nutrizionista",ig:"alexcalabresenutri.pt",bio:[
+        `Mi chiamo Alex Calabrese e la mia passione per il movimento umano si unisce alla mia esperienza come Biologo Nutrizionista. Con una laurea in Scienze Motorie e una specializzazione in Scienze della Nutrizione Umana, ho costruito un metodo che integra fitness e alimentazione per ottenere risultati duraturi.`,
+        `Che si tratti di allenamenti individuali, di coppia o per piccoli gruppi, la mia priorità è offrire programmi personalizzati che si adattino alle esigenze di ognuno. Credo fermamente che l'allenamento e la nutrizione siano la chiave per un benessere globale, e sono qui per guidarti nel tuo percorso di trasformazione fisica e mentale.`
+    ]},
+    federica:{name:"Federica Recanatesi",init:"FR",role:"Personal Trainer · Preventiva & Osteopatia",ig:null,bio:[
+        `Sono Federica Recanatesi, laureata in Scienze Motorie presso l'Università di Roma "Tor Vergata" e specializzata con Laurea Magistrale in Attività Motoria Preventiva e Adattata (A.M.P.A.) presso l'Università degli Studi di Roma "Foro Italico". Parallelamente ho approfondito il mio percorso formativo in osteopatia presso la scuola ICOMM.`,
+        `Il mio percorso mi consente di avere una visione globale del movimento: dalla performance alla prevenzione, fino alla gestione delle problematiche posturali e muscolo-scheletriche. Mi focalizzo su programmi personalizzati basati su un'attenta valutazione funzionale, con l'obiettivo di migliorare mobilità, forza e resistenza, dedicando particolare attenzione alla prevenzione degli infortuni e al benessere a lungo termine.`
+    ]},
+    simone:{name:"Simone Colangeli",init:"SC",role:"Personal Trainer · Functional Training",ig:"_il.simon_",bio:[
+        `Sono Simone Colangeli, C.F.T. (Certified Fitness Trainer) di ISSA Europe e personal trainer con oltre 20 anni di esperienza nell'atletica leggera a livello agonistico.`,
+        `La mia passione per il movimento mi ha portato a sviluppare un metodo basato sull'allenamento funzionale, costruito su misura per ogni persona. Credo che ogni percorso debba essere unico, disegnato sulle specifiche attitudini e aspirazioni di chi si allena con me. Il mio obiettivo è modellare insieme a te il tuo percorso di crescita fisica, in modo efficace e sostenibile.`
+    ]},
+    matteo:{name:"Matteo Antenucci",init:"MA",role:"Personal Trainer · Functional & CrossFit",ig:null,bio:[
+        `Mi chiamo Matteo Antenucci, Personal Trainer certificato FIPE e specializzato in Functional Training e CrossFit. Il mio percorso nasce dalla passione per l'allenamento funzionale e dalla continua ricerca di un approccio tecnico, dinamico ed efficace al movimento.`,
+        `Mi concentro sullo sviluppo di forza, resistenza, mobilità e controllo del corpo, costruendo programmi personalizzati in base agli obiettivi, al livello di preparazione e alle esigenze di ogni persona. Credo in un allenamento preciso e strutturato, dove ogni esercizio ha uno scopo chiaro.`,
+        `Il mio obiettivo è aiutarti a migliorare le tue performance, superare i tuoi limiti e costruire una versione più forte, funzionale e consapevole di te stesso.`
+    ]}
+};
+const trModal=document.getElementById('trModal');
+function openTr(key){
+    const t=TRAINERS[key]; if(!t)return;
+    const av=document.getElementById('tmAv');
+    if(t.photo){av.innerHTML='<img src="'+t.photo+'" alt="">';}else{av.textContent=t.init;}
+    document.getElementById('tmRole').textContent=t.role;
+    document.getElementById('tmName').textContent=t.name;
+    document.getElementById('tmBio').innerHTML=t.bio.map(p=>'<p>'+p+'</p>').join('');
+    const first=t.name.split(' ')[0];
+    const wa='https://wa.me/393755703958?text='+encodeURIComponent('Ciao! Vorrei allenarmi con '+t.name+' presso Xstamina Training Lab. Potete darmi informazioni?');
+    let a='<a class="btn btn-wa" href="'+wa+'" target="_blank" rel="noopener">Allenati con '+first+'</a>';
+    if(t.ig){a+='<a class="btn btn-ghost" href="https://www.instagram.com/'+t.ig+'" target="_blank" rel="noopener">Instagram</a>';}
+    document.getElementById('tmActions').innerHTML=a;
+    trModal.classList.add('open');document.body.style.overflow='hidden';
+}
+function closeTr(){trModal.classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.tr').forEach(c=>c.addEventListener('click',()=>openTr(c.dataset.tr)));
+document.getElementById('trClose').addEventListener('click',closeTr);
+trModal.addEventListener('click',e=>{if(e.target===trModal)closeTr();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeTr();});
+</script>
+</body>
+</html>
