@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Xstamina Training Lab – Studio privato di Personal Training a Roma, zona Coppedè. Allenamento su misura e Valutazione Corporea. Via Agri 15.">
-<meta name="keywords" content="personal trainer roma, personal training coppedè, studio fitness roma, xstamina, allenamento personalizzato roma, valutazione corporea roma">
+<meta name="description" content="Xstamina Training Lab – Studio privato di Personal Training a Roma, zona Coppedè, quartiere Trieste. Allenamento su misura e Valutazione Corporea. Via Agri 15.">
+<meta name="keywords" content="personal trainer roma, personal training coppedè, personal training trieste roma, studio fitness roma, xstamina, allenamento personalizzato roma, valutazione corporea roma">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Xstamina Training Lab – Personal Training Roma">
 <meta property="og:description" content="Studio privato di personal training nel cuore di Coppedè. Trainer certificati, programmi su misura, risultati reali.">
@@ -213,6 +213,20 @@ body.has-promo{--promo-h:42px;}
    ABOUT STRIP
 ============================================================ */
 .about{padding:var(--spy) 0;background:var(--paper);position:relative;overflow:hidden;}
+
+/* ABOUT PHOTO */
+.about-photo{overflow:hidden;min-height:420px;}
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.about-features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;padding-top:36px;border-top:1px solid var(--border);}
+
+/* GALLERY */
+.studio-gallery{padding:var(--spy) 0;background:var(--paper);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.gallery-item{overflow:hidden;aspect-ratio:3/2;background:var(--ink);cursor:zoom-in;}
+.gallery-item.wide{grid-column:1/-1;aspect-ratio:21/9;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;display:block;}
+.gallery-item:hover img{transform:scale(1.04);}
+
 .about-x{
     position:absolute;right:-60px;top:50%;transform:translateY(-50%);
     width:380px;opacity:0.05;pointer-events:none;
@@ -417,7 +431,15 @@ footer{background:var(--ink);padding:48px 0 32px;}
 
 /* RESPONSIVE */
 @media(max-width:1100px){
+    .gallery-item.wide{aspect-ratio:16/9;}
+}
+@media(max-width:1100px){
     .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px;}
+}
+@media(max-width:900px){
+    .about-features{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .gallery-item.wide{grid-column:1/-1;aspect-ratio:16/9;}
 }
 @media(max-width:900px){
     .nav-links{display:none;}
@@ -433,6 +455,10 @@ footer{background:var(--ink);padding:48px 0 32px;}
     .map{height:320px;}
     .cta .container{flex-direction:column;align-items:flex-start;}
     .tr-modal-box{padding:30px 24px;}
+}
+@media(max-width:640px){
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-item.wide{aspect-ratio:3/2;}
 }
 @media(max-width:640px){
     .tr-grid{grid-template-columns:repeat(2,1fr);}
@@ -530,19 +556,49 @@ footer{background:var(--ink);padding:48px 0 32px;}
                 <p>Xstamina Training Lab nasce per chi vuole risultati veri, senza perdersi nella confusione di una sala pesi affollata. Ogni percorso parte da una valutazione, prosegue con un programma su misura e viene seguito in ogni singola sessione da un trainer dedicato.</p>
                 <p>È questo il senso di "Lab": misuriamo, costruiamo, miglioriamo. Niente è lasciato al caso.</p>
             </div>
-            <div class="about-points reveal d1">
-                <div class="about-point">
-                    <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-                    <div><h4>Programmi su misura</h4><p>Obiettivi, tempi e livello di partenza diversi per ognuno. Il programma si adatta a te, non il contrario.</p></div>
-                </div>
-                <div class="about-point">
-                    <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg></div>
-                    <div><h4>Sempre seguito</h4><p>Un trainer dedicato in ogni sessione: corregge, adatta e ti spinge quando serve. Mai solo.</p></div>
-                </div>
-                <div class="about-point">
-                    <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-                    <div><h4>Risultati misurabili</h4><p>Valutazione corporea e monitoraggio dei progressi. I miglioramenti si vedono, e si misurano.</p></div>
-                </div>
+            <div class="about-photo reveal d1">
+                <img src="assets/studio-sign.jpg" alt="Xstamina Training Lab — insegna studio">
+            </div>
+        </div>
+        <div class="about-features">
+            <div class="about-point reveal">
+                <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <div><h4>Programmi su misura</h4><p>Obiettivi, tempi e livello di partenza diversi per ognuno. Il programma si adatta a te, non il contrario.</p></div>
+            </div>
+            <div class="about-point reveal d1">
+                <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg></div>
+                <div><h4>Sempre seguito</h4><p>Un trainer dedicato in ogni sessione: corregge, adatta e ti spinge quando serve. Mai solo.</p></div>
+            </div>
+            <div class="about-point reveal d2">
+                <div class="about-point-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                <div><h4>Risultati misurabili</h4><p>Valutazione corporea e monitoraggio dei progressi. I miglioramenti si vedono, e si misurano.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     STUDIO GALLERY
+============================================================ -->
+<section class="studio-gallery">
+    <div class="container">
+        <div class="sec-head center reveal">
+            <span class="label">Lo spazio</span>
+            <h2>Lo <em>Studio</em></h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item wide reveal">
+                <img src="assets/studio-full.jpg" alt="Xstamina Training Lab — vista panoramica">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="assets/studio-sign.jpg" alt="Xstamina Training Lab — insegna">
+            </div>
+            <div class="gallery-item reveal d1">
+                <img src="assets/studio-equipment.jpg" alt="Xstamina Training Lab — parete attrezzature">
+            </div>
+            <div class="gallery-item reveal d2">
+                <img src="assets/studio-detail.jpg" alt="Xstamina Training Lab — dettaglio attrezzature">
             </div>
         </div>
     </div>
@@ -631,7 +687,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
                  <img src="assets/trainer-nome.jpg" alt="Nome Cognome"> -->
             <div class="tr reveal" data-tr="emilio">
                 <div class="tr-more">+</div>
-                <div class="tr-ph">EC</div>
+                <img src="assets/trainer-emilio.jpg" alt="Emilio Calabrese — Personal Trainer Founder Xstamina">
                 <div class="tr-ov"><div class="tr-role">Founder</div><div class="tr-name">Emilio Calabrese</div><span class="tr-hint">Scopri di più →</span></div>
             </div>
             <div class="tr reveal d1" data-tr="marlena">
@@ -732,7 +788,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
             <div class="contact-info">
                 <div class="ci reveal">
                     <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                    <div><div class="ci-l">Indirizzo</div><div class="ci-v">Via Agri 15, Roma 00198<br><small>Zona Coppedè / Nomentano</small></div></div>
+                    <div><div class="ci-l">Indirizzo</div><div class="ci-v">Via Agri 15, Roma 00198<br><small>Zona Coppedè / Trieste</small></div></div>
                 </div>
                 <div class="ci reveal d1">
                     <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
@@ -892,7 +948,7 @@ document.querySelectorAll('.ctr').forEach(el=>co.observe(el));
 
 /* ---- TRAINER PROFILES + MODAL ---- */
 const TRAINERS = {
-    emilio:{name:"Emilio Calabrese",init:"EC",role:"Personal Trainer · Founder",ig:"emilio_calabrese",bio:[
+    emilio:{name:"Emilio Calabrese",init:"EC",photo:"assets/trainer-emilio.jpg",role:"Personal Trainer · Founder",ig:"emilio_calabrese",bio:[
         `Sono Emilio Calabrese, fondatore dello Xstamina Training Lab e laureato in Scienze Motorie presso l'Università degli Studi di Roma "Foro Italico". Ho seguito studi in Scienze della Nutrizione Umana presso l'Università San Raffaele e completato numerosi corsi di formazione specializzati in nutrizione umana e applicata all'attività sportiva. Con 20 anni di esperienza, continuo a formarmi per garantire un approccio sempre aggiornato e mirato alle esigenze dei miei clienti.`,
         `Il mio metodo si basa su un approccio realistico, che tiene conto delle necessità individuali, dello stile di vita e degli impegni di ciascuno. Non propongo allenamenti estremi sin da subito, ma creo percorsi gestibili e motivanti, che permettono al corpo di adattarsi progressivamente. Il mio obiettivo è spingerti oltre i tuoi limiti, ma in maniera graduale e sostenibile.`,
         `L'allenamento con me è concreto ed efficace, senza inutili complicazioni. Lavoro per creare un ambiente dove tu possa crescere fisicamente e mentalmente, mantenendo il giusto equilibrio tra sfida e sostenibilità.`
