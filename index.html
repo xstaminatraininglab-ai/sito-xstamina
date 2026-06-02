@@ -902,7 +902,7 @@ const CONFIG = {
     promoCta:    "Scrivici",
     promoLink:   "https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20sulla%20promo%20della%20prima%20lezione.",
 
-    videoId: ""   // <-- incolla qui l'ID quando carichi il video
+    videoId: "z_vJ6XGdoFE"
 };
 
 /* ---- PROMO RENDER ---- */
@@ -920,15 +920,27 @@ const CONFIG = {
     }
 })();
 
-/* ---- VIDEO RENDER ---- */
+/* ---- VIDEO RENDER: click-to-play, thumbnail visibile, iframe solo al click ---- */
 (function(){
-    if(CONFIG.videoId){
-        document.getElementById('videoFrame').innerHTML =
-            '<iframe src="https://www.youtube.com/embed/'+CONFIG.videoId+'?rel=0" '+
-            'title="Xstamina Training Lab" loading="lazy" '+
-            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
-            'allowfullscreen></iframe>';
-    }
+    if(!CONFIG.videoId) return;
+    const id = CONFIG.videoId;
+    const frame = document.getElementById('videoFrame');
+    const ph = document.getElementById('videoPh');
+    ph.innerHTML =
+        '<img src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" '+
+        'alt="Guarda il video Xstamina Training Lab" '+
+        'style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">'
+        +'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">'
+        +'<div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>'
+        +'</div>';
+    ph.style.cursor='pointer';
+    ph.addEventListener('click', function(){
+        frame.innerHTML=
+            '<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1" '
+            +'title="Xstamina Training Lab" '
+            +'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '
+            +'allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>';
+    },{once:true});
 })();
 
 /* ---- NAV SCROLL ---- */
