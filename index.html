@@ -15,12 +15,10 @@
 
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
-    <link rel="preload" as="image" href="assets/hero-emilio.jpg" fetchpriority="high">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
@@ -561,7 +559,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
         </div>
     </div>
     <div class="hero-photo">
-        <img src="assets/hero-emilio.jpg" alt="Allenamento allo studio Xstamina Training Lab" width="700" height="933" fetchpriority="high">
+        <img src="assets/hero-emilio.jpg" alt="Allenamento allo studio Xstamina Training Lab">
     </div>
 </header>
 
@@ -904,7 +902,7 @@ const CONFIG = {
     promoCta:    "Scrivici",
     promoLink:   "https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20sulla%20promo%20della%20prima%20lezione.",
 
-    videoId: "z_vJ6XGdoFE"   // YouTube Shorts verticale
+    videoId: ""   // <-- incolla qui l'ID quando carichi il video
 };
 
 /* ---- PROMO RENDER ---- */
@@ -922,28 +920,14 @@ const CONFIG = {
     }
 })();
 
-/* ---- VIDEO RENDER (click-to-play: no YouTube JS until user clicks) ---- */
+/* ---- VIDEO RENDER ---- */
 (function(){
     if(CONFIG.videoId){
-        const id = CONFIG.videoId;
-        const frame = document.getElementById('videoFrame');
-        const ph = document.getElementById('videoPh');
-        // Build click-to-play thumbnail
-        ph.innerHTML = `
-            <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg"
-                 alt="Guarda il video Xstamina"
-                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.2);">
-                <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-            </div>`;
-        ph.style.cursor = 'pointer';
-        ph.addEventListener('click', function(){
-            frame.innerHTML =
-                '<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" '+
-                'title="Xstamina Training Lab" '+
-                'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
-                'allowfullscreen style="width:100%;height:100%;border:none;display:block;"></iframe>';
-        }, {once:true});
+        document.getElementById('videoFrame').innerHTML =
+            '<iframe src="https://www.youtube.com/embed/'+CONFIG.videoId+'?rel=0" '+
+            'title="Xstamina Training Lab" loading="lazy" '+
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
+            'allowfullscreen></iframe>';
     }
 })();
 
