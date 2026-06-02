@@ -512,7 +512,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
 ============================================================ -->
 <nav class="nav" id="nav">
     <div class="container">
-        <a href="#home" class="nav-logo"><img src="assets/logo.png" alt="Xstamina Training Lab" width="900" height="174"></a>
+        <a href="#home" class="nav-logo"><img src="assets/logo.png" alt="Xstamina Training Lab"></a>
         <ul class="nav-links">
             <li><a href="#chi-siamo">Chi siamo</a></li>
             <li><a href="#servizi">Servizi</a></li>
@@ -709,7 +709,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
                  <img src="assets/trainer-nome.jpg" alt="Nome Cognome"> -->
             <div class="tr reveal" data-tr="emilio">
                 <div class="tr-more">+</div>
-                <img src="assets/trainer-emilio.jpg" alt="Emilio Calabrese — Personal Trainer Founder Xstamina" width="600" height="800">
+                <img src="assets/trainer-emilio.jpg" alt="Emilio Calabrese — Personal Trainer Founder Xstamina">
                 <div class="tr-ov"><div class="tr-role">Founder</div><div class="tr-name">Emilio Calabrese</div><span class="tr-hint">Scopri di più →</span></div>
             </div>
             <div class="tr reveal d1" data-tr="marlena">
@@ -865,7 +865,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
     <div class="container">
         <div class="foot-row">
             <div class="foot-logo">
-                <img src="assets/logo-white.png" alt="Xstamina Training Lab" width="900" height="174">
+                <img src="assets/logo-white.png" alt="Xstamina Training Lab">
                 <p>Studio privato di Personal Training nel cuore di Coppedè, Roma.</p>
             </div>
             <ul class="foot-links">
@@ -922,14 +922,28 @@ const CONFIG = {
     }
 })();
 
-/* ---- VIDEO RENDER ---- */
+/* ---- VIDEO RENDER (click-to-play: no YouTube JS until user clicks) ---- */
 (function(){
     if(CONFIG.videoId){
-        document.getElementById('videoFrame').innerHTML =
-            '<iframe src="https://www.youtube.com/embed/'+CONFIG.videoId+'?rel=0" '+
-            'title="Xstamina Training Lab" loading="lazy" '+
-            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
-            'allowfullscreen></iframe>';
+        const id = CONFIG.videoId;
+        const frame = document.getElementById('videoFrame');
+        const ph = document.getElementById('videoPh');
+        // Build click-to-play thumbnail
+        ph.innerHTML = `
+            <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg"
+                 alt="Guarda il video Xstamina"
+                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.2);">
+                <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            </div>`;
+        ph.style.cursor = 'pointer';
+        ph.addEventListener('click', function(){
+            frame.innerHTML =
+                '<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" '+
+                'title="Xstamina Training Lab" '+
+                'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
+                'allowfullscreen style="width:100%;height:100%;border:none;display:block;"></iframe>';
+        }, {once:true});
     }
 })();
 
