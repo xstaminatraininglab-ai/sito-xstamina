@@ -718,7 +718,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
             <div class="tr reveal d2" data-tr="alex">
                 <div class="tr-more">+</div>
                 <img src="assets/trainer-alex.jpg" alt="Alex Calabrese — Personal Trainer Xstamina">
-                <div class="tr-ov"><div class="tr-role">Biologo Nutrizionista</div><div class="tr-name">Alex Calabrese</div><span class="tr-hint">Scopri di più →</span></div>
+                <div class="tr-ov"><div class="tr-role">Personal Trainer · Nutrizionista</div><div class="tr-name">Alex Calabrese</div><span class="tr-hint">Scopri di più →</span></div>
             </div>
             <div class="tr reveal" data-tr="federica">
                 <div class="tr-more">+</div>
@@ -1027,6 +1027,32 @@ document.querySelectorAll('.tr').forEach(c=>c.addEventListener('click',()=>openT
 document.getElementById('trClose').addEventListener('click',closeTr);
 trModal.addEventListener('click',e=>{if(e.target===trModal)closeTr();});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeTr();});
+
+/* ============================================================
+   ⚙️ GOOGLE ADS CONVERSION TRACKING
+   Vai in Google Ads → Obiettivi → Conversioni → la tua azione
+   di conversione → Dettagli tag → copia i 3 valori qui.
+   Account: 907-192-3741
+============================================================ */
+const GADS = {
+    conversionId: "AW-XXXXXXXXX",   // ← Conversion ID  (es. AW-1234567890)
+    phoneLabel:   "YYYYYYYYYYYY",   // ← Etichetta "Click telefono"
+    waLabel:      "ZZZZZZZZZZZZ"    // ← Etichetta "Click WhatsApp"
+};
+function trackConv(label){
+    if(typeof gtag !== 'undefined' && GADS.conversionId !== 'AW-XXXXXXXXX'){
+        gtag('event','conversion',{'send_to':GADS.conversionId+'/'+label});
+    }
+}
+// Attach tracking to all phone and WhatsApp links
+document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+        a.addEventListener('click',function(){trackConv(GADS.phoneLabel);});
+    });
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+        a.addEventListener('click',function(){trackConv(GADS.waLabel);});
+    });
+});
 </script>
 </body>
 </html>
