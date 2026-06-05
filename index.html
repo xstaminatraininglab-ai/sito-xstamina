@@ -7,7 +7,7 @@
 <meta name="keywords" content="personal trainer roma, personal training coppedè, personal training trieste roma, studio fitness roma, xstamina, allenamento personalizzato roma, valutazione corporea roma">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Xstamina Training Lab – Personal Training Roma">
-<meta property="og:description" content="Studio privato di personal training nel cuore di Coppedè. Trainer certificati, programmi su misura, risultati reali.">
+<meta property="og:description" content="Studio privato di personal training a Coppedè, Roma. Trainer certificati, programmi su misura, risultati reali.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.xstamina.it">
 <meta property="og:image" content="https://www.xstamina.it/assets/hero-emilio.jpg">
@@ -471,6 +471,23 @@ footer{background:var(--ink);padding:48px 0 32px;}
     .hero-ctas{flex-direction:column;align-items:stretch;}
     .hero-ctas .btn{justify-content:center;}
 }
+
+/* PRIMA SESSIONE */
+.prima{padding:var(--spy) 0;background:var(--ink);position:relative;overflow:hidden;}
+.prima::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);}
+.prima-x{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:420px;opacity:0.05;pointer-events:none;filter:brightness(0) invert(1);}
+.prima-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1;}
+.prima-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-family:var(--fdisp);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:7px 18px;margin-bottom:22px;}
+.prima h2{font-family:var(--fdisp);font-weight:900;font-size:clamp(28px,3.8vw,50px);color:#fff;line-height:1.05;margin-bottom:20px;text-transform:uppercase;letter-spacing:-0.01em;}
+.prima h2 em{color:var(--orange);font-style:normal;}
+.prima-copy{color:rgba(255,255,255,.68);font-size:1rem;line-height:1.8;margin-bottom:14px;}
+.prima-hook{color:rgba(255,255,255,.9);font-size:1.05rem;font-weight:500;line-height:1.7;margin-bottom:32px;border-left:2px solid var(--orange);padding-left:16px;}
+.prima-photo{position:relative;overflow:hidden;aspect-ratio:3/4;max-width:420px;margin-left:auto;}
+.prima-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+@media(max-width:900px){
+    .prima-grid{grid-template-columns:1fr;}
+    .prima-photo{max-width:100%;aspect-ratio:4/3;margin:0;}
+}
 </style>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XYS0BXWJXM"></script>
@@ -545,7 +562,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
     <div class="hero-text">
         <div class="hero-eyebrow"><span class="label">Studio Privato · Roma Coppedè</span></div>
         <h1>Il tuo personal training,<br>costruito <span class="o">su di te.</span></h1>
-        <p class="hero-sub">Niente sale affollate. Solo tu, il tuo trainer e un programma disegnato sul tuo obiettivo. Nel cuore di Coppedè, dove l'allenamento diventa un risultato misurabile.</p>
+        <p class="hero-sub">Niente sale affollate. Solo tu, il tuo trainer e un programma disegnato sul tuo obiettivo. A Coppedè, dove l'allenamento diventa un risultato misurabile.</p>
         <div class="hero-ctas">
             <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20informazioni%20su%20programmi%20e%20disponibilit%C3%A0." target="_blank" rel="noopener">
                 <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -671,6 +688,34 @@ footer{background:var(--ink);padding:48px 0 32px;}
             <div class="stat reveal d1"><div class="stat-v"><span class="pre">+</span><span class="ctr" data-target="500">0</span></div><div class="stat-l">Persone allenate</div></div>
             <div class="stat reveal d2"><div class="stat-v"><span class="pre">+</span><span class="ctr" data-target="4000">0</span></div><div class="stat-l">Ore di allenamento annue</div></div>
             <div class="stat reveal d3"><div class="stat-v"><span class="pre">+</span><span class="ctr" data-target="250">0</span></div><div class="stat-l">Ore prenotabili a settimana</div></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     PRIMA SESSIONE
+============================================================ -->
+<section class="prima">
+    <img src="assets/logo-x.png" class="prima-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="prima-grid">
+            <div>
+                <div class="prima-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    Sessione singola disponibile
+                </div>
+                <h2>Prova Xstamina.<br>Poi <em>decidi.</em></h2>
+                <p class="prima-copy">Non sei ancora pronto per un percorso completo? Nessun problema. Puoi iniziare con una singola sessione — il tuo trainer dedicato, un programma costruito su di te, nessun impegno ulteriore.</p>
+                <p class="prima-hook">E se dopo la sessione vuoi continuare? Scrivici entro 7 giorni: trovi una convenienza che rende la scelta ancora più semplice.</p>
+                <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Sono%20interessato%20alla%20sessione%20singola%20di%20prova%20di%20Xstamina.%20Vorrei%20informazioni%20su%20come%20funziona." target="_blank" rel="noopener">
+                    <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Scopri come funziona
+                </a>
+            </div>
+            <div class="prima-photo reveal">
+                <img src="assets/emilio-barbell.jpg" alt="Personal Trainer Xstamina — sessione singola">
+            </div>
         </div>
     </div>
 </section>
@@ -864,7 +909,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
         <div class="foot-row">
             <div class="foot-logo">
                 <img src="assets/logo-white.png" alt="Xstamina Training Lab">
-                <p>Studio privato di Personal Training nel cuore di Coppedè, Roma.</p>
+                <p>Studio privato di Personal Training a Coppedè, Roma.</p>
             </div>
             <ul class="foot-links">
                 <li><a href="#chi-siamo">Chi siamo</a></li>
@@ -898,8 +943,8 @@ footer{background:var(--ink);padding:48px 0 32px;}
 ============================================================ */
 const CONFIG = {
     promoAttiva: false,
-    promoTesto:  "Promo Estate — la tua prima lezione a 50€, scalabili sul pacchetto.",
-    promoCta:    "Scrivici",
+    promoTesto:  "Sessione singola disponibile — prova Xstamina prima di scegliere il tuo percorso. Scopri la convenienza.",
+    promoCta:    "Scrivici ora",
     promoLink:   "https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20sulla%20promo%20della%20prima%20lezione.",
 
     videoId: "z_vJ6XGdoFE"
