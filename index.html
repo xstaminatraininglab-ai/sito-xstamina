@@ -226,6 +226,22 @@ body.has-promo{--promo-h:42px;}
 .about-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 .about-features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;padding-top:36px;border-top:1px solid var(--border);}
 
+
+/* VERITÀ / PROMESSA ONE-TO-ONE */
+.verita{padding:var(--spy) 0;background:var(--paper);}
+.verita-head{text-align:center;max-width:680px;margin:0 auto 60px;}
+.verita-head h2{font-family:var(--fdisp);font-weight:900;font-size:clamp(28px,3.6vw,46px);color:var(--ink);line-height:1.1;letter-spacing:-0.01em;margin-top:10px;}
+.verita-head h2 em{font-style:normal;color:var(--orange);}
+.verita-head p{color:var(--text-sub);font-size:1.02rem;margin-top:16px;line-height:1.7;}
+.verita-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border);}
+.verita-card{background:var(--paper);padding:44px 36px;text-align:center;}
+.verita-num{font-family:var(--fdisp);font-weight:900;font-size:0.72rem;letter-spacing:0.2em;color:var(--orange);text-transform:uppercase;margin-bottom:18px;}
+.verita-line{font-family:var(--fdisp);font-weight:800;font-size:1.35rem;color:var(--ink);line-height:1.25;letter-spacing:-0.01em;margin-bottom:14px;}
+.verita-sub{font-size:0.9rem;color:var(--text-sub);line-height:1.65;}
+@media(max-width:900px){
+    .verita-grid{grid-template-columns:1fr;}
+}
+
 /* GALLERY */
 .studio-gallery{padding:var(--spy) 0;background:var(--paper);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
@@ -784,6 +800,37 @@ footer{background:var(--ink);padding:48px 0 32px;}
                 <div class="tr-more">+</div>
                 <img src="assets/trainer-matteo.jpg" alt="Matteo Antenucci — Personal Trainer Xstamina">
                 <div class="tr-ov"><div class="tr-role">Functional &amp; CrossFit</div><div class="tr-name">Matteo Antenucci</div><span class="tr-hint">Scopri di più →</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     VERITÀ / PROMESSA ONE-TO-ONE
+============================================================ -->
+<section class="verita">
+    <div class="container">
+        <div class="verita-head reveal">
+            <span class="label">Come lavoriamo davvero</span>
+            <h2>Personal vuol dire <em>personal.</em></h2>
+            <p>Non piccoli gruppi chiamati "personal". Non un trainer diverso ogni volta. Da Xstamina, quello che prenoti è quello che ottieni.</p>
+        </div>
+        <div class="verita-grid">
+            <div class="verita-card reveal">
+                <div class="verita-num">Uno a uno</div>
+                <div class="verita-line">Un trainer.<br>Una persona.<br>Ogni sessione.</div>
+                <p class="verita-sub">Mai in gruppo, mai condiviso. L'attenzione del tuo trainer è solo per te, dall'inizio alla fine.</p>
+            </div>
+            <div class="verita-card reveal d1">
+                <div class="verita-num">Tu scegli</div>
+                <div class="verita-line">Scegli tu<br>il trainer.<br>Sempre.</div>
+                <p class="verita-sub">Nessuno ti assegna a qualcuno. Prenoti chi vuoi, quando vuoi — e puoi cambiare ogni volta che ti va.</p>
+            </div>
+            <div class="verita-card reveal d2">
+                <div class="verita-num">Nessuna sorpresa</div>
+                <div class="verita-line">Sai già<br>con chi ti<br>alleni.</div>
+                <p class="verita-sub">L'orario che prenoti è con il trainer che hai scelto. Punto. Prima ancora di mettere piede in studio.</p>
             </div>
         </div>
     </div>
