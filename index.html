@@ -227,6 +227,35 @@ body.has-promo{--promo-h:42px;}
 .about-features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;padding-top:36px;border-top:1px solid var(--border);}
 
 
+
+/* OPEN DAY */
+.openday{display:none;padding:clamp(56px,7vw,92px) 0;background:var(--ink);position:relative;overflow:hidden;border-top:4px solid var(--orange);}
+.openday.on{display:block;}
+.openday-x{position:absolute;right:-70px;top:50%;transform:translateY(-50%);width:400px;opacity:.06;pointer-events:none;filter:brightness(0) invert(1);}
+.od-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:52px;align-items:center;position:relative;z-index:1;}
+.od-tag{display:inline-flex;align-items:center;gap:9px;background:var(--orange);color:#fff;font-family:var(--fdisp);font-weight:800;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:8px 18px;margin-bottom:20px;}
+.od-tag span{width:7px;height:7px;border-radius:50%;background:#fff;animation:odp 1.6s infinite;}
+@keyframes odp{0%,100%{opacity:1}50%{opacity:.25}}
+.openday h2{font-family:var(--fdisp);font-weight:900;font-size:clamp(30px,4.6vw,62px);color:#fff;line-height:.98;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:8px;}
+.openday h2 em{font-style:normal;color:var(--orange);display:block;}
+.od-when{font-family:var(--fdisp);font-weight:600;font-size:clamp(1rem,1.5vw,1.2rem);color:#fff;letter-spacing:.04em;margin-bottom:22px;}
+.od-lead{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.75;margin-bottom:26px;max-width:520px;}
+.od-facts{display:flex;flex-direction:column;gap:14px;margin-bottom:32px;}
+.od-fact{display:flex;gap:13px;align-items:flex-start;color:rgba(255,255,255,.86);font-size:.94rem;line-height:1.5;}
+.od-fact svg{flex-shrink:0;color:var(--orange);margin-top:2px;}
+.od-fact b{color:#fff;font-weight:600;}
+.od-ctas{display:flex;flex-wrap:wrap;gap:13px;}
+.od-note{margin-top:20px;font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.6;}
+.od-card{background:rgba(255,255,255,.04);border:1px solid rgba(221,103,49,.3);padding:34px 30px;}
+.od-card h3{font-family:var(--fdisp);font-weight:800;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:22px;}
+.od-step{display:flex;gap:15px;align-items:flex-start;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,.07);}
+.od-step:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.od-step-n{width:27px;height:27px;flex-shrink:0;border:1.5px solid var(--orange);color:var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--fdisp);font-weight:800;font-size:.78rem;border-radius:50%;}
+.od-step p{color:rgba(255,255,255,.78);font-size:.9rem;line-height:1.55;}
+.od-step p b{color:#fff;font-weight:600;}
+@media(max-width:900px){.od-grid{grid-template-columns:1fr;gap:34px;}}
+@media(max-width:480px){.od-ctas{flex-direction:column;align-items:stretch;}.od-ctas .btn{justify-content:center;}}
+
 /* VERITÀ / PROMESSA ONE-TO-ONE */
 .verita{padding:var(--spy) 0;background:var(--paper);}
 .verita-head{text-align:center;max-width:680px;margin:0 auto 60px;}
@@ -541,7 +570,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
 <div class="promo-bar" id="promoBar"></div>
 
 <!-- FLOATING WHATSAPP -->
-<a class="float-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20avere%20informazioni." target="_blank" rel="noopener" aria-label="WhatsApp">
+<a class="float-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20avere%20informazioni." target="_blank" rel="noopener" aria-label="WhatsApp" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -559,7 +588,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
             <li><a href="#contatti">Contatti</a></li>
         </ul>
         <div class="nav-right">
-            <a class="nav-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20e%20vorrei%20informazioni." target="_blank" rel="noopener">
+            <a class="nav-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20e%20vorrei%20informazioni." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">
                 <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Scrivici
             </a>
@@ -575,7 +604,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
         <li><a href="#recensioni" class="ml">Recensioni</a></li>
         <li><a href="#contatti" class="ml">Contatti</a></li>
     </ul>
-    <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20su%20Xstamina." target="_blank" rel="noopener" style="justify-content:center;">Scrivici su WhatsApp</a>
+    <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20su%20Xstamina." target="_blank" rel="noopener" style="justify-content:center;" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">Scrivici su WhatsApp</a>
 </div>
 
 <!-- ============================================================
@@ -587,7 +616,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
         <h1>Il tuo personal training,<br>costruito <span class="o">su di te.</span></h1>
         <p class="hero-sub">Niente sale affollate. Solo tu, il tuo trainer e un programma disegnato sul tuo obiettivo. A Coppedè, dove l'allenamento diventa un risultato misurabile.</p>
         <div class="hero-ctas">
-            <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20informazioni%20su%20programmi%20e%20disponibilit%C3%A0." target="_blank" rel="noopener">
+            <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20informazioni%20su%20programmi%20e%20disponibilit%C3%A0." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">
                 <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Scrivici su WhatsApp
             </a>
@@ -602,6 +631,54 @@ footer{background:var(--ink);padding:48px 0 32px;}
         <img src="assets/hero-emilio.jpg" alt="Allenamento allo studio Xstamina Training Lab">
     </div>
 </header>
+
+<!-- ============================================================
+     OPEN DAY  (si accende/spegne da CONFIG.openDay in fondo)
+============================================================ -->
+<section class="openday" id="openday">
+    <img src="assets/logo-x.png" class="openday-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="od-grid">
+            <div>
+                <div class="od-tag"><span></span> Evento gratuito</div>
+                <h2>Open Day<em>Xstamina</em></h2>
+                <div class="od-when">Sabato 19 settembre &nbsp;·&nbsp; 9:00 – 18:00</div>
+                <p class="od-lead">Una giornata per conoscere da vicino il nostro modo di lavorare, il team e l'esperienza di allenamento dentro lo studio. Ogni ora, una lezione gratuita di 45 minuti con i nostri trainer.</p>
+                <div class="od-facts">
+                    <div class="od-fact">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span><b>Lezioni da 45 minuti</b>, una ogni ora dalle 9:00 alle 18:00</span>
+                    </div>
+                    <div class="od-fact">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                        <span><b>5 posti</b> per ogni fascia oraria — prenota solo quella a cui parteciperai davvero</span>
+                    </div>
+                    <div class="od-fact">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span><b>Solo durante l'Open Day</b>, sconto del 10% per chi decide di iniziare un percorso</span>
+                    </div>
+                    <div class="od-fact">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Via Agri 15, Roma — Quartiere Trieste</span>
+                    </div>
+                </div>
+                <div class="od-ctas">
+                    <a class="btn btn-orange" id="odBook" href="#" target="_blank" rel="noopener">Prenota su Sportclubby</a>
+                    <a class="btn btn-ghost-light" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20partecipare%20all'Open%20Day%20di%20sabato%2019%20settembre.%20Potete%20darmi%20informazioni%3F" target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">Chiedi informazioni</a>
+                </div>
+                <p class="od-note">Sei già cliente Xstamina? Sei naturalmente invitato — e puoi portare con te chi ancora non ci conosce.</p>
+            </div>
+            <div class="od-card">
+                <h3>Come prenotare</h3>
+                <div class="od-step"><div class="od-step-n">1</div><p>Scarica l'app <b>Sportclubby</b> dallo store del tuo telefono</p></div>
+                <div class="od-step"><div class="od-step-n">2</div><p>Registrati e cerca <b>Xstamina Training Lab</b></p></div>
+                <div class="od-step"><div class="od-step-n">3</div><p>Inizia a <b>seguire il club</b> per sbloccare le prenotazioni</p></div>
+                <div class="od-step"><div class="od-step-n">4</div><p>Scegli la tua <b>fascia oraria</b> e conferma il posto</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- ============================================================
      ABOUT
@@ -680,21 +757,21 @@ footer{background:var(--ink);padding:48px 0 32px;}
                 <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M18 4v16M2 8h4M18 8h4M2 16h4M18 16h4M6 12h12"/></svg>
                 <h3>Personal Training</h3>
                 <p>Un programma costruito interamente attorno a te. Obiettivi, tempi, livello di partenza: niente è standardizzato. Il tuo trainer ti segue in ogni sessione.</p>
-                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Sono%20interessato%20al%20Personal%20Training%20di%20Xstamina.%20Vorrei%20informazioni%20sui%20vostri%20programmi." target="_blank" rel="noopener">Chiedi informazioni</a>
+                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Sono%20interessato%20al%20Personal%20Training%20di%20Xstamina.%20Vorrei%20informazioni%20sui%20vostri%20programmi." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">Chiedi informazioni</a>
             </div>
             <div class="svc reveal d1">
                 <div class="svc-num">02</div>
                 <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 <h3>Personal Training di Coppia</h3>
                 <p>Allenati con il tuo partner, un amico o un familiare. Stessa qualità del personal, condivisa in due. Un trainer dedicato che segue entrambi, motivazione doppia e costo per persona più conveniente.</p>
-                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Siamo%20interessati%20al%20Personal%20Training%20di%20Coppia%20di%20Xstamina.%20Vorremmo%20informazioni%20sui%20vostri%20programmi." target="_blank" rel="noopener">Chiedi informazioni</a>
+                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Siamo%20interessati%20al%20Personal%20Training%20di%20Coppia%20di%20Xstamina.%20Vorremmo%20informazioni%20sui%20vostri%20programmi." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">Chiedi informazioni</a>
             </div>
             <div class="svc reveal d2">
                 <div class="svc-num">03</div>
                 <svg class="svc-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 <h3>Valutazione Corporea</h3>
                 <p>Analisi della composizione corporea per definire il tuo punto di partenza reale. Massa muscolare, grasso corporeo, obiettivi misurabili. La base di ogni percorso.</p>
-                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20prenotare%20una%20valutazione%20corporea%20presso%20Xstamina%20Training%20Lab." target="_blank" rel="noopener">Prenota la valutazione</a>
+                <a class="svc-link" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20prenotare%20una%20valutazione%20corporea%20presso%20Xstamina%20Training%20Lab." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">Prenota la valutazione</a>
             </div>
         </div>
     </div>
@@ -732,7 +809,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
                 <p class="prima-copy">Non sei ancora pronto per un percorso completo? Nessun problema. Puoi iniziare con una singola sessione — il tuo trainer dedicato, un programma costruito su di te, nessun impegno ulteriore.</p>
                 <p class="prima-copy">Una sessione completa, allo stesso standard di ogni percorso Xstamina. Non un assaggio: un allenamento vero.</p>
                 <p class="prima-hook">E se dopo la sessione vuoi continuare? Scrivici entro 7 giorni: trovi una convenienza che rende la scelta ancora più semplice.</p>
-                <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Sono%20interessato%20alla%20sessione%20singola%20di%20Xstamina.%20Vorrei%20informazioni%20su%20come%20funziona." target="_blank" rel="noopener">
+                <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Sono%20interessato%20alla%20sessione%20singola%20di%20Xstamina.%20Vorrei%20informazioni%20su%20come%20funziona." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">
                     <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     Scopri come funziona
                 </a>
@@ -886,7 +963,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
             <span>Hai domande? Siamo su WhatsApp.</span>
             <h2>Inizia adesso.<br>Rispondiamo in pochi minuti.</h2>
         </div>
-        <a class="btn-ondark" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20e%20vorrei%20iniziare%20un%20percorso%20di%20allenamento.%20Potete%20darmi%20informazioni?" target="_blank" rel="noopener">
+        <a class="btn-ondark" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20e%20vorrei%20iniziare%20un%20percorso%20di%20allenamento.%20Potete%20darmi%20informazioni?" target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Apri WhatsApp
         </a>
@@ -910,7 +987,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
                 </div>
                 <div class="ci reveal d1">
                     <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                    <div><div class="ci-l">Telefono / WhatsApp</div><div class="ci-v"><a href="tel:+393755703958">+39 375 5703958</a></div></div>
+                    <div><div class="ci-l">Telefono / WhatsApp</div><div class="ci-v"><a href="tel:+393755703958" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">+39 375 5703958</a></div></div>
                 </div>
                 <div class="ci reveal d2">
                     <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
@@ -923,7 +1000,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
                 <div class="cwa reveal">
                     <h3>Scrivici su WhatsApp</h3>
                     <p>Il modo più diretto per avere informazioni su programmi, prezzi e disponibilità. Rispondiamo di norma entro pochi minuti.</p>
-                    <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20informazioni%20su%20programmi%20e%20disponibilit%C3%A0." target="_blank" rel="noopener">
+                    <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20Training%20Lab%20e%20vorrei%20informazioni%20su%20programmi%20e%20disponibilit%C3%A0." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">
                         <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                         Avvia conversazione
                     </a>
@@ -1000,12 +1077,47 @@ const CONFIG = {
     promoCta:    "Scrivici ora",
     promoLink:   "https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20sulla%20promo%20della%20prima%20lezione.",
 
-    videoId: "z_vJ6XGdoFE"
+    videoId: "z_vJ6XGdoFE",
+
+    /* --- OPEN DAY: unico interruttore. false = sito normale --- */
+    openDay:        true,
+    openDayFino:    "2026-09-19",   // si nasconde da solo dopo questa data
+    openDayBarra:   "SABATO 19 SETTEMBRE — Open Day Xstamina, lezioni gratuite dalle 9:00 alle 18:00.",
+    openDayCta:     "Scopri di più",
+    openDayLink:    "#openday",
+    sportclubbyLink:"https://www.sportclubby.com/it/roma/xstamina-training-lab"
 };
+
+/* ---- OPEN DAY RENDER (con scadenza automatica) ---- */
+(function(){
+    if(!CONFIG.openDay) return;
+    // scade da solo a fine giornata del 19
+    var fine = new Date(CONFIG.openDayFino + 'T23:59:59');
+    if(new Date() > fine) return;
+
+    var sec = document.getElementById('openday');
+    if(sec) sec.classList.add('on');
+
+    var book = document.getElementById('odBook');
+    if(book) book.href = CONFIG.sportclubbyLink;
+
+    // barra in cima
+    var bar = document.getElementById('promoBar');
+    if(bar){
+        bar.innerHTML = CONFIG.openDayBarra +
+            ' <a href="'+CONFIG.openDayLink+'">'+CONFIG.openDayCta+' →</a>';
+        bar.classList.add('on');
+        document.body.classList.add('has-promo');
+        var h = bar.offsetHeight;
+        document.getElementById('nav').style.top = h+'px';
+        var ht = document.querySelector('.hero-text');
+        if(ht) ht.style.paddingTop = 'calc(var(--navh) + '+h+'px + 40px)';
+    }
+})();
 
 /* ---- PROMO RENDER ---- */
 (function(){
-    if(CONFIG.promoAttiva){
+    if(CONFIG.promoAttiva && !CONFIG.openDay){
         const bar = document.getElementById('promoBar');
         bar.innerHTML = CONFIG.promoTesto +
             ' <a href="'+CONFIG.promoLink+'" target="_blank" rel="noopener">'+CONFIG.promoCta+' →</a>';
