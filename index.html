@@ -117,17 +117,20 @@ a{color:inherit;text-decoration:none;}
     font-weight:600;
     font-size:0.84rem;
     letter-spacing:0.03em;
-    position:relative;
+    position:fixed;
+    top:0;left:0;right:0;
     z-index:1100;
+    transition:transform .35s ease;
 }
 .promo-bar.on{display:block;}
+.promo-bar.hidden{transform:translateY(-100%);}
 .promo-bar a{
     text-decoration:underline;
     text-underline-offset:3px;
     font-weight:800;
     margin-left:6px;
 }
-body.has-promo{--promo-h:42px;}
+:root{--promo-h:0px;}
 
 /* ============================================================
    NAV
@@ -135,10 +138,12 @@ body.has-promo{--promo-h:42px;}
 .nav{
     position:fixed;top:0;left:0;right:0;z-index:1000;
     height:var(--navh);display:flex;align-items:center;
-    transition:box-shadow .35s ease;
+    transition:box-shadow .35s ease, transform .35s ease;
     background:#fff;
     border-bottom:1px solid var(--border);
 }
+.nav{top:var(--promo-h);}
+.nav.hidden{transform:translateY(calc(-100% - var(--promo-h)));}
 .nav.solid{box-shadow:0 2px 24px rgba(0,0,0,.06);}
 .nav .container{display:flex;align-items:center;justify-content:space-between;}
 .nav-logo img{height:34px;width:auto;}
@@ -180,7 +185,7 @@ body.has-promo{--promo-h:42px;}
 .hero{
     position:relative;
     min-height:100vh;
-    padding-top:var(--navh);
+    padding-top:calc(var(--navh) + var(--promo-h));
     display:grid;
     grid-template-columns:1fr 1fr;
     align-items:stretch;
@@ -1108,10 +1113,7 @@ const CONFIG = {
             ' <a href="'+CONFIG.openDayLink+'">'+CONFIG.openDayCta+' →</a>';
         bar.classList.add('on');
         document.body.classList.add('has-promo');
-        var h = bar.offsetHeight;
-        document.getElementById('nav').style.top = h+'px';
-        var ht = document.querySelector('.hero-text');
-        if(ht) ht.style.paddingTop = 'calc(var(--navh) + '+h+'px + 40px)';
+        document.documentElement.style.setProperty('--promo-h', bar.offsetHeight+'px');
     }
 })();
 
@@ -1123,10 +1125,7 @@ const CONFIG = {
             ' <a href="'+CONFIG.promoLink+'" target="_blank" rel="noopener">'+CONFIG.promoCta+' →</a>';
         bar.classList.add('on');
         document.body.classList.add('has-promo');
-        // sposta nav e hero sotto la barra
-        const h = bar.offsetHeight;
-        document.getElementById('nav').style.top = h+'px';
-        document.querySelector('.hero-text').style.paddingTop = 'calc(var(--navh) + '+h+'px + 40px)';
+        document.documentElement.style.setProperty('--promo-h', bar.offsetHeight+'px');
     }
 })();
 
@@ -1153,9 +1152,27 @@ const CONFIG = {
     },{once:true});
 })();
 
-/* ---- NAV SCROLL ---- */
+/* ---- NAV SCROLL: si nasconde scorrendo giù, riappare scorrendo su ---- */
 const nav = document.getElementById('nav');
-addEventListener('scroll', ()=>nav.classList.toggle('solid', scrollY>40), {passive:true});
+let lastY = 0;
+addEventListener('scroll', function(){
+    const y = scrollY;
+    nav.classList.toggle('solid', y > 40);
+
+    // non nascondere mai se il menu mobile è aperto
+    const menuAperto = document.getElementById('mob').classList.contains('open');
+
+    const bar = document.getElementById('promoBar');
+
+    if(y > lastY && y > 300 && !menuAperto){
+        nav.classList.add('hidden');      // scorre giù → nascondi
+        if(bar) bar.classList.add('hidden');
+    } else if(y < lastY || y <= 100){
+        nav.classList.remove('hidden');   // scorre su o è in cima → mostra
+        if(bar) bar.classList.remove('hidden');
+    }
+    lastY = y;
+}, {passive:true});
 
 /* ---- MOBILE MENU ---- */
 const burger=document.getElementById('burger'), mob=document.getElementById('mob');
