@@ -545,6 +545,279 @@ footer{background:var(--ink);padding:48px 0 32px;}
     .prima-grid{grid-template-columns:1fr;}
     .prima-photo{max-width:100%;margin:0;}
 }
+
+/* ============================================================
+   SITO UNICO — scelta Personal Training / Lagree
+   Stessi token, stessi componenti del sito attuale.
+============================================================ */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:1200;background:#fff;}
+.promo-bar{top:env(safe-area-inset-top,0px);}
+.nav{top:calc(var(--promo-h) + env(safe-area-inset-top,0px));}
+
+/* NAV: logo + selettore */
+.nav-left{display:flex;align-items:center;gap:22px;min-width:0;}
+.nav-logo .mark{display:none;height:28px;width:auto;}
+.nav-switch{display:flex;gap:3px;padding:4px;background:var(--paper-2);border:1px solid var(--border);}
+.nav-switch button{
+    font-family:var(--fdisp);font-weight:700;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--text-sub);background:transparent;border:0;padding:8px 14px;cursor:pointer;white-space:nowrap;
+    clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);transition:background .2s,color .2s;
+}
+.nav-switch button:hover{color:var(--orange);}
+.nav-switch button[aria-pressed="true"]{background:var(--ink);color:#fff;}
+.nav-switch .sh{display:none;}
+.nav-switch button:focus-visible,.choice-o:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}
+.nav-links{gap:28px;}
+.nav-links.nl-lg{display:none;}
+:root[data-view="lagree"] .nav-links.nl-pt{display:none;}
+:root[data-view="lagree"] .nav-links.nl-lg{display:flex;}
+.nav-cta{
+    display:none;background:var(--orange);color:#fff;font-family:var(--fdisp);font-weight:700;
+    font-size:0.74rem;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;align-items:center;gap:8px;
+    transition:all .25s;clip-path:polygon(7px 0,100% 0,calc(100% - 7px) 100%,0 100%);white-space:nowrap;
+}
+.nav-cta:hover{background:var(--orange-d);transform:translateY(-1px);}
+:root[data-view="lagree"] .nav-cta{display:flex;}
+:root[data-view="lagree"] .nav-wa{display:none;}
+.mob ul.mob-lg,.mob .mob-cta-lg{display:none;}
+:root[data-view="lagree"] .mob ul.mob-pt,:root[data-view="lagree"] .mob .mob-cta-pt{display:none;}
+:root[data-view="lagree"] .mob ul.mob-lg{display:flex;}
+:root[data-view="lagree"] .mob .mob-cta-lg{display:inline-flex;}
+@media(max-width:1240px){
+    .nav-links,:root[data-view="lagree"] .nav-links.nl-lg{display:none;}
+    .burger{display:flex;}
+}
+@media(max-width:560px){
+    .nav-wa,:root[data-view="lagree"] .nav-cta{display:none;}
+    .nav-logo img{height:26px;}
+    .nav-left{gap:12px;}
+    .nav-switch button{padding:8px 10px;font-size:0.66rem;}
+    .nav-switch .lg{display:none;}
+    .nav-switch .sh{display:inline;}
+}
+@media(max-width:400px){
+    .nav-logo .full{display:none;}
+    .nav-logo .mark{display:block;}
+}
+
+/* SCELTA in fondo all'hero */
+.hero{grid-template-rows:1fr auto;}
+.choice{
+    grid-column:1/-1;display:grid;grid-template-columns:minmax(200px,.55fr) 1fr 1fr;
+    border-top:1px solid var(--border);background:var(--paper);
+    opacity:0;animation:up .8s ease forwards .95s;
+}
+.choice-l{display:flex;align-items:center;padding:20px clamp(20px,5vw,72px);}
+.choice-o{
+    position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:3px 18px;
+    padding:22px clamp(20px,3vw,40px);border-left:1px solid var(--border);background:var(--paper-2);
+    transition:background .25s;
+}
+.choice-o::before{content:'';position:absolute;top:-1px;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.choice-o:hover{background:var(--paper);}
+.choice-o:hover::before,.choice-o.on::before{transform:scaleX(1);}
+.choice-o.on{background:var(--paper);}
+.choice-k{font-family:var(--fdisp);font-weight:800;font-size:1.05rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);}
+.choice-d{grid-column:1;font-size:0.86rem;color:var(--text-sub);}
+.choice-a{grid-column:2;grid-row:1/3;font-family:var(--fdisp);font-weight:800;font-size:1.2rem;color:var(--orange);transition:transform .2s;}
+.choice-o:hover .choice-a{transform:translateX(4px);}
+@media(max-width:900px){
+    .hero-text{order:3;}
+    .choice{order:2;grid-template-columns:1fr 1fr;}
+    .choice-l{grid-column:1/-1;padding:16px 20px 8px;}
+    .choice-o{padding:14px 20px 16px;}
+    .choice-o:first-of-type{border-left:0;}
+    .choice-k{font-size:0.92rem;}
+    .choice-d{font-size:0.8rem;}
+}
+
+/* LAGREE — pannello macchina nell'hero */
+.lg-visual{
+    background:var(--paper-2);display:flex;flex-direction:column;justify-content:center;gap:26px;
+    padding:56px clamp(20px,4vw,60px);border-left:1px solid var(--border);position:relative;overflow:hidden;
+}
+.lg-visual img.wm{position:absolute;right:-50px;bottom:-30px;width:300px;height:auto;object-fit:contain;opacity:.06;pointer-events:none;}
+.lg-visual svg{width:100%;height:auto;display:block;position:relative;}
+.lg-tempo{display:flex;align-items:baseline;gap:18px;position:relative;border-top:1px solid var(--border);padding-top:22px;}
+.lg-tempo .n{font-family:var(--fdisp);font-weight:900;font-size:clamp(48px,5vw,72px);line-height:.9;color:var(--ink);min-width:1.1ch;font-variant-numeric:tabular-nums;}
+.lg-tempo .d{font-family:var(--fdisp);font-weight:700;font-size:0.74rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange);}
+.lg-tempo .c{margin-left:auto;font-size:0.84rem;color:var(--text-sub);text-align:right;line-height:1.5;}
+.m-frame{fill:var(--ink);} .m-plat{fill:#3b342f;} .m-carr{fill:var(--orange);} .m-pad{fill:var(--ink);}
+.m-spring{fill:none;stroke:var(--text-sub);stroke-width:2.2;stroke-linejoin:round;}
+.m-slot{fill:var(--paper-2);} .m-line{stroke:var(--border);stroke-width:1.5;}
+.m-dim{stroke:var(--text-mut);stroke-width:1.2;}
+.m-txt{fill:var(--text-sub);font-family:var(--fdisp);font-weight:600;font-size:14px;letter-spacing:.12em;}
+@media(max-width:900px){
+    .lg-visual{min-height:auto;border-left:0;padding:36px 20px 30px;}
+    .lg-tempo .c{display:none;}
+}
+
+/* LAGREE — stato dei lavori */
+.lg-status{padding:44px 0 48px;background:var(--paper);border-bottom:1px solid var(--border);}
+.lg-status ol{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:18px;}
+.lg-status li{border-top:3px solid var(--border);padding-top:14px;display:flex;flex-direction:column;gap:6px;color:var(--text-mut);font-size:0.92rem;line-height:1.45;}
+.lg-status li .k{font-family:var(--fdisp);font-weight:700;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;}
+.lg-status li.done{border-top-color:var(--ink);color:var(--ink);}
+.lg-status li.now{border-top-color:var(--orange);color:var(--ink);}
+.lg-status li.now .k{color:var(--orange);}
+.lg-status li.now .k::after{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-left:8px;animation:odp 1.6s infinite;vertical-align:1px;}
+@media(max-width:900px){.lg-status ol{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.lg-status ol{grid-template-columns:1fr;}}
+
+/* LAGREE — sezioni */
+.lg-sec{padding:var(--spy) 0;background:var(--paper);position:relative;overflow:hidden;}
+.lg-sec.alt{background:var(--paper-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.lg-sec .about-x{z-index:0;}
+.lg-sec .container{position:relative;z-index:1;}
+.lg-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border:1px solid var(--border);}
+.lg-pillar{background:var(--paper);padding:40px 30px;}
+.lg-pillar .v{font-family:var(--fdisp);font-weight:900;font-size:clamp(40px,4vw,56px);color:var(--orange);line-height:1;}
+.lg-pillar .v small{font-size:0.82rem;font-weight:700;letter-spacing:0.1em;color:var(--text-sub);margin-left:6px;text-transform:uppercase;}
+.lg-pillar h4{font-family:var(--fdisp);font-weight:700;font-size:1rem;color:var(--ink);text-transform:uppercase;letter-spacing:0.04em;margin:18px 0 8px;}
+.lg-pillar p{font-size:0.9rem;color:var(--text-sub);line-height:1.65;}
+@media(max-width:1100px){.lg-pillars{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.lg-pillars{grid-template-columns:1fr;}}
+
+.svc-grid.four{grid-template-columns:repeat(4,1fr);}
+.svc-grid.four .svc p{margin-bottom:0;}
+@media(max-width:1100px){.svc-grid.four{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.svc-grid.four{grid-template-columns:1fr;}}
+
+.lg-spec{background:var(--paper-2);border:1px solid var(--border);}
+.lg-spec div{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding:18px 28px;border-bottom:1px solid var(--border);}
+.lg-spec div:last-child{border-bottom:0;}
+.lg-spec dt{font-family:var(--fdisp);font-weight:700;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);}
+.lg-spec dd{text-align:right;font-family:var(--fdisp);font-weight:800;font-size:1.3rem;color:var(--ink);line-height:1.2;font-variant-numeric:tabular-nums;}
+.lg-spec dd small{display:block;font-family:var(--fbody);font-weight:400;font-size:0.78rem;color:var(--text-sub);}
+.lg-copy p{color:var(--text-sub);font-size:1.02rem;line-height:1.8;margin-bottom:16px;max-width:560px;}
+
+.lg-steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border:1px solid var(--border);}
+.lg-steps li{background:var(--paper);padding:30px 24px;display:flex;flex-direction:column;gap:12px;}
+.lg-steps h4{font-family:var(--fdisp);font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink);line-height:1.25;}
+.lg-steps p{font-size:0.88rem;color:var(--text-sub);line-height:1.6;}
+@media(max-width:1100px){
+    .lg-steps{grid-template-columns:1fr;}
+    .lg-steps li{flex-direction:row;align-items:flex-start;gap:18px;padding:22px 24px;}
+    .lg-steps li > div{display:flex;flex-direction:column;gap:6px;}
+}
+
+.lg-team{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.lg-team-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.tr.tr-tbd{cursor:default;}
+.tr.tr-tbd:hover{transform:none;}
+.tr-tbd .tr-ph{font-size:3rem;color:rgba(255,255,255,.22);}
+@media(max-width:900px){.lg-team{grid-template-columns:1fr;gap:36px;}}
+
+/* Ring "senti il tempo" dentro la sezione .prima */
+.ring{position:relative;width:min(320px,100%);aspect-ratio:1;max-width:100%;margin:0 auto;}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg);display:block;}
+.r-track{fill:none;stroke:rgba(255,255,255,.1);stroke-width:9;}
+.r-prog{fill:none;stroke:var(--orange);stroke-width:9;}
+.ring-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;}
+.ring-in .ph{font-family:var(--fdisp);font-weight:700;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange-l);}
+.ring-in .n{font-family:var(--fdisp);font-weight:900;font-size:clamp(64px,7vw,96px);line-height:.9;color:#fff;font-variant-numeric:tabular-nums;}
+.ring-in .rp{font-size:0.84rem;color:rgba(255,255,255,.6);}
+.prima .btn-orange{border:0;}
+
+/* Lista Founding: stesso linguaggio della sezione Open Day */
+.lg-form{background:var(--paper);padding:32px 30px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.lg-form .full{grid-column:1/-1;}
+.lg-f{display:flex;flex-direction:column;gap:7px;min-width:0;border:0;padding:0;margin:0;}
+.lg-f label,.lg-f legend{font-family:var(--fdisp);font-weight:700;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-sub);padding:0;}
+.lg-f legend{margin-bottom:7px;}
+.lg-f input[type=text],.lg-f input[type=email],.lg-f input[type=tel]{
+    font-family:var(--fbody);font-size:1rem;padding:12px 14px;border:1.5px solid var(--border);background:#fff;color:var(--ink);border-radius:0;width:100%;
+}
+.lg-f input:focus{outline:none;border-color:var(--orange);}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{position:relative;}
+.lg-f label.chip{font-family:var(--fbody);font-weight:400;font-size:inherit;letter-spacing:0;text-transform:none;color:var(--text);}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer;}
+.chip span{display:inline-block;padding:9px 14px;border:1.5px solid var(--border);font-size:0.9rem;color:var(--text);cursor:pointer;transition:all .15s;}
+.chip input:checked + span{background:var(--ink);color:#fff;border-color:var(--ink);}
+.chip input:focus-visible + span{outline:2px solid var(--orange);outline-offset:2px;}
+.lg-consent{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:0.8rem;color:var(--text-sub);line-height:1.5;}
+.lg-consent input{margin-top:3px;accent-color:var(--orange);width:16px;height:16px;}
+.lg-err{color:var(--orange-d);font-size:0.84rem;min-height:1.2em;}
+.lg-draft{font-size:0.76rem;color:var(--text-sub);border:1px dashed var(--border);padding:8px 10px;}
+.lg-form .btn{justify-self:start;}
+.lg-ok{background:var(--paper);padding:32px 30px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;}
+.lg-ok h3{font-family:var(--fdisp);font-weight:800;font-size:1.4rem;text-transform:uppercase;color:var(--ink);}
+.lg-ok p{color:var(--text-sub);font-size:0.95rem;line-height:1.65;}
+@media(max-width:560px){.lg-form{grid-template-columns:1fr;padding:26px 20px;}}
+
+[hidden]{display:none!important;}
+.lg-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.lg-consent a{color:var(--orange-d);text-decoration:underline;text-underline-offset:2px;}
+.lg-form .btn[disabled]{opacity:.6;cursor:wait;transform:none;box-shadow:none;}
+.lg-privacy{border-top:1px solid var(--border);padding-top:12px;}
+.lg-privacy summary{cursor:pointer;font-family:var(--fdisp);font-weight:700;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-sub);}
+.lg-privacy p{font-size:0.8rem;color:var(--text-sub);line-height:1.6;margin-top:10px;}
+.lg-privacy b{color:var(--text);font-weight:600;}
+.lg-ok:focus{outline:none;}
+/* FAQ */
+.lg-faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px 80px;}
+.lg-faq details{border-bottom:1px solid var(--border);}
+.lg-faq details:first-child{border-top:1px solid var(--border);}
+.lg-faq summary{list-style:none;cursor:pointer;padding:20px 44px 20px 0;position:relative;font-family:var(--fdisp);font-weight:700;font-size:1rem;color:var(--ink);}
+.lg-faq summary::-webkit-details-marker{display:none;}
+.lg-faq summary::after{content:'+';position:absolute;right:6px;top:14px;font-family:var(--fdisp);font-weight:700;font-size:1.5rem;color:var(--orange);transition:transform .25s;}
+.lg-faq details[open] summary::after{transform:rotate(45deg);}
+.lg-faq details p{padding-bottom:22px;color:var(--text-sub);font-size:0.95rem;line-height:1.7;max-width:62ch;}
+@media(max-width:900px){.lg-faq{grid-template-columns:1fr;}}
+
+.mob .mob-cta-lg{font-size:0.9rem;}
+
+/* Pacchetto Prova */
+.hero-offer{display:inline-flex;align-self:flex-start;align-items:center;flex-wrap:wrap;gap:6px 12px;margin:-12px 0 30px;padding:12px 18px;background:var(--orange-dim);border:1px solid var(--orange-line);color:var(--ink);font-size:0.95rem;line-height:1.4;opacity:0;animation:up .8s ease forwards .58s;transition:border-color .2s;}
+.hero-offer:hover{border-color:var(--orange);}
+.hero-offer b{font-family:var(--fdisp);font-weight:800;font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);}
+.hero-offer .p{font-family:var(--fdisp);font-weight:800;}
+.hero-offer .a{color:var(--orange);font-weight:700;}
+.lg-offer{margin-top:28px;display:grid;grid-template-columns:1.2fr 1fr;background:var(--paper);border:1px solid var(--border);position:relative;scroll-margin-top:96px;}
+.lg-offer::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:3px;background:var(--orange);}
+.lg-offer-main{padding:40px 40px 36px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
+.lg-offer-main .prima-badge{margin-bottom:4px;}
+.lg-offer-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 18px;font-family:var(--fdisp);font-weight:900;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-0.02em;color:var(--ink);text-transform:uppercase;}
+.lg-offer-price .o{color:var(--orange);}
+.lg-offer-main p{color:var(--text-sub);font-size:1rem;line-height:1.75;max-width:520px;}
+.lg-offer-side{padding:40px;border-left:1px solid var(--border);background:var(--paper-2);display:flex;flex-direction:column;justify-content:center;gap:24px;}
+.lg-offer-side ul{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.lg-offer-side li{display:flex;gap:12px;align-items:flex-start;font-size:0.95rem;color:var(--text);line-height:1.5;}
+.lg-offer-side li svg{flex-shrink:0;color:var(--orange);margin-top:3px;}
+.lg-offer-side .btn{align-self:flex-start;}
+@media(max-width:900px){
+    .lg-offer{grid-template-columns:1fr;}
+    .lg-offer-side{border-left:0;border-top:1px solid var(--border);}
+    .lg-offer-main,.lg-offer-side{padding:28px 22px;}
+}
+
+/* illustrazione dalle foto */
+.m-handle{fill:none;stroke:var(--ink);stroke-width:11;stroke-linecap:round;stroke-linejoin:round;}
+.m-tick line{stroke:var(--paper-2);stroke-width:1.5;opacity:.55;}
+.m-spring{stroke-width:1.4;}
+/* barra lavori in corso */
+.lg-prog-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;}
+.lg-prog-pct{font-family:var(--fdisp);font-weight:900;font-size:1.6rem;color:var(--ink);font-variant-numeric:tabular-nums;}
+.lg-bar{height:12px;background:var(--paper-3);margin:12px 0 14px;overflow:hidden;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);}
+.lg-bar i{display:block;height:100%;background:var(--orange);width:0;transition:width 1.2s ease;}
+.lg-prog-note{font-size:0.95rem;color:var(--text-sub);}
+/* Non è Pilates */
+.lg-vs{background:var(--paper);border:1px solid var(--border);}
+.lg-vs > div{display:grid;grid-template-columns:.6fr 1fr 1.2fr;border-bottom:1px solid var(--border);}
+.lg-vs > div:last-child{border-bottom:0;}
+.lg-vs span{padding:20px 26px;font-size:1rem;color:var(--text-sub);line-height:1.45;}
+.lg-vs .k{font-family:var(--fdisp);font-weight:700;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-mut);align-self:center;}
+.lg-vs .l{color:var(--ink);font-weight:600;background:var(--orange-dim);border-left:3px solid var(--orange);}
+.lg-vs-h span{font-family:var(--fdisp);font-weight:800;font-size:0.82rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-sub);padding-top:16px;padding-bottom:16px;}
+.lg-vs-h .l{color:var(--orange);}
+.lg-vs-note{margin-top:26px;font-family:var(--fdisp);font-weight:700;font-size:1.1rem;color:var(--ink);}
+@media(max-width:700px){
+    .lg-vs > div{grid-template-columns:1fr 1fr;}
+    .lg-vs .k{grid-column:1/-1;padding:14px 16px 0;}
+    .lg-vs-h span:first-child{display:none;}
+    .lg-vs span{padding:12px 16px 16px;font-size:0.92rem;}
+}
 </style>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XYS0BXWJXM"></script>
@@ -568,7 +841,6 @@ footer{background:var(--ink);padding:48px 0 32px;}
     src="https://www.facebook.com/tr?id=885359614597024&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
-
 <!-- ============================================================
      PROMO BAR  (si accende/spegne da CONFIG in fondo al file)
 ============================================================ -->
@@ -584,34 +856,57 @@ footer{background:var(--ink);padding:48px 0 32px;}
 ============================================================ -->
 <nav class="nav" id="nav">
     <div class="container">
-        <a href="#home" class="nav-logo"><img src="assets/logo.png" alt="Xstamina Training Lab"></a>
-        <ul class="nav-links">
+        <div class="nav-left">
+            <a href="#home" class="nav-logo"><img class="full" src="assets/logo.png" alt="Xstamina Training Lab"><img class="mark" src="assets/logo-x.png" alt="Xstamina"></a>
+            <div class="nav-switch" role="group" aria-label="Scegli come allenarti">
+                <button type="button" data-go="pt" aria-pressed="true"><span class="lg">Personal Training</span><span class="sh">Personal</span></button>
+                <button type="button" data-go="lagree" aria-pressed="false">Lagree</button>
+            </div>
+        </div>
+        <ul class="nav-links nl-pt">
             <li><a href="#chi-siamo">Chi siamo</a></li>
             <li><a href="#servizi">Servizi</a></li>
             <li><a href="#trainer">Trainer</a></li>
             <li><a href="#recensioni">Recensioni</a></li>
             <li><a href="#contatti">Contatti</a></li>
         </ul>
+        <ul class="nav-links nl-lg">
+            <li><a href="#l-pilates">Non è Pilates</a></li>
+            <li><a href="#l-metodo">Il metodo</a></li>
+            <li><a href="#l-perchi">Per chi è</a></li>
+            <li><a href="#l-trainer">Trainer</a></li>
+            <li><a href="#l-faq">FAQ</a></li>
+        </ul>
         <div class="nav-right">
             <a class="nav-wa" href="https://wa.me/393755703958?text=Ciao!%20Ho%20visitato%20il%20sito%20di%20Xstamina%20e%20vorrei%20informazioni." target="_blank" rel="noopener" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">
                 <svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Scrivici
             </a>
+            <a class="nav-cta" href="#l-founding">Lista Founding</a>
             <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
     </div>
 </nav>
 <div class="mob" id="mob">
-    <ul>
+    <ul class="mob-lg">
+        <li><a href="#l-pilates" class="ml">Non è Pilates</a></li>
+        <li><a href="#l-metodo" class="ml">Il metodo</a></li>
+        <li><a href="#l-perchi" class="ml">Per chi è</a></li>
+        <li><a href="#l-trainer" class="ml">Trainer</a></li>
+        <li><a href="#l-faq" class="ml">FAQ</a></li>
+    </ul>
+    <ul class="mob-pt">
         <li><a href="#chi-siamo" class="ml">Chi siamo</a></li>
         <li><a href="#servizi" class="ml">Servizi</a></li>
         <li><a href="#trainer" class="ml">Trainer</a></li>
         <li><a href="#recensioni" class="ml">Recensioni</a></li>
         <li><a href="#contatti" class="ml">Contatti</a></li>
     </ul>
-    <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20su%20Xstamina." target="_blank" rel="noopener" style="justify-content:center;" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">Scrivici su WhatsApp</a>
+    <a class="btn btn-orange mob-cta-lg ml" href="#l-founding" style="justify-content:center;">Entra nella lista Founding</a>
+    <a class="btn btn-wa mob-cta-pt" href="https://wa.me/393755703958?text=Ciao!%20Vorrei%20informazioni%20su%20Xstamina." target="_blank" rel="noopener" style="justify-content:center;" onclick="gtag('event', 'conversion', {'send_to': 'AW-10893098718'});">Scrivici su WhatsApp</a>
 </div>
 
+<main id="view-pt">
 <!-- ============================================================
      HERO
 ============================================================ -->
@@ -634,6 +929,11 @@ footer{background:var(--ink);padding:48px 0 32px;}
     </div>
     <div class="hero-photo">
         <img src="assets/hero-emilio.jpg" alt="Allenamento allo studio Xstamina Training Lab">
+    </div>
+    <div class="choice">
+        <span class="choice-l label">Scegli come allenarti</span>
+        <a class="choice-o on" href="#chi-siamo"><span class="choice-k">Personal Training</span><span class="choice-d">Uno a uno · Via Agri 15</span><span class="choice-a">↓</span></a>
+        <a class="choice-o" href="#lagree"><span class="choice-k">Lagree</span><span class="choice-d">Classi da sei · apertura <span data-cfg="apertura">primo trimestre 2027</span></span><span class="choice-a">→</span></a>
     </div>
 </header>
 
@@ -897,7 +1197,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
         <div class="verita-head reveal">
             <span class="label">Come lavoriamo davvero</span>
             <h2>Personal vuol dire <em>personal.</em></h2>
-            <p>Non piccoli gruppi chiamati "personal". Non un trainer diverso ogni volta. Da Xstamina, quello che prenoti è quello che ottieni.</p>
+            <p>Quando prenoti un personal, è uno a uno. Non un trainer diverso ogni volta. Da Xstamina, quello che prenoti è quello che ottieni.</p>
         </div>
         <div class="verita-grid">
             <div class="verita-card reveal">
@@ -1020,6 +1320,329 @@ footer{background:var(--ink);padding:48px 0 32px;}
     </div>
 </section>
 
+</main>
+
+<!-- ============================================================
+     LAGREE
+============================================================ -->
+<main id="view-lagree" hidden>
+
+<header class="hero" id="lagree">
+    <div class="hero-text">
+        <div class="hero-eyebrow"><span class="label">Xstamina Lagree · Via Topino 33a</span></div>
+        <h1>Quattro secondi per scendere.<br><span class="o">Quattro per risalire.</span></h1>
+        <p class="hero-sub">Il Lagree è un allenamento ad alta intensità e a basso impatto su macchine dedicate. Movimenti lenti, muscoli sempre sotto tensione, tutto il corpo in 50 minuti. In classi da sei, con un trainer che segue ogni ripetizione.</p>
+        <div class="hero-ctas">
+            <a class="btn btn-orange" href="#l-founding">Entra nella lista Founding</a>
+            <a class="btn btn-ghost" href="#l-metodo">Cos'è il Lagree</a>
+        </div>
+        <div class="hero-meta">
+            <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Via Topino 33a, Roma</div>
+            <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Apertura <span data-cfg="apertura">primo trimestre 2027</span></span></div>
+            <div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>6 posti per classe</div>
+        </div>
+    </div>
+    <div class="hero-photo lg-visual" aria-label="Il carrello della macchina Lagree scorre lentamente: quattro secondi in andata, quattro in ritorno">
+        <img src="assets/logo-x.png" class="wm" alt="" aria-hidden="true">
+        <svg viewBox="0 0 1000 250" aria-hidden="true">
+            <line class="m-line" x1="0" y1="236" x2="1000" y2="236"/>
+            <rect class="m-frame" x="78" y="212" width="16" height="24"/>
+            <rect class="m-frame" x="906" y="212" width="16" height="24"/>
+            <circle class="m-plat" cx="66" cy="227" r="9"/>
+            <rect class="m-frame" x="60" y="202" width="880" height="11"/>
+            <g class="m-tick"><line x1="440" y1="204" x2="440" y2="209"/><line x1="474" y1="204" x2="474" y2="209"/><line x1="508" y1="204" x2="508" y2="209"/><line x1="542" y1="204" x2="542" y2="209"/><line x1="576" y1="204" x2="576" y2="209"/><line x1="610" y1="204" x2="610" y2="209"/><line x1="644" y1="204" x2="644" y2="209"/><line x1="678" y1="204" x2="678" y2="209"/><line x1="712" y1="204" x2="712" y2="209"/><line x1="746" y1="204" x2="746" y2="209"/></g>
+            <path class="m-handle" d="M96 172 L88 112 Q86 70 118 70 Q150 70 148 112 L140 172"/>
+            <rect class="m-plat" x="60" y="186" width="150" height="16"/>
+            <rect class="m-frame" x="54" y="168" width="162" height="18" rx="3"/>
+            <path class="m-handle" d="M850 160 L842 100 Q840 58 872 58 Q904 58 902 100 L894 160"/>
+            <rect class="m-plat" x="800" y="174" width="140" height="28"/>
+            <rect class="m-frame" x="792" y="156" width="154" height="18" rx="3"/>
+            <rect class="m-frame" x="782" y="164" width="16" height="12" rx="6"/>
+            <polyline id="sp1" class="m-spring" points=""/>
+            <polyline id="sp2" class="m-spring" points=""/>
+            <polyline id="sp3" class="m-spring" points=""/>
+            <g id="carriage" transform="translate(222 0)">
+                <rect class="m-carr" x="0" y="186" width="200" height="16"/>
+                <rect class="m-pad" x="0" y="168" width="96" height="18" rx="3"/>
+                <rect class="m-pad" x="104" y="168" width="96" height="18" rx="3"/>
+                <rect class="m-frame" x="194" y="160" width="14" height="12" rx="6"/>
+            </g>
+        </svg>
+        <div class="lg-tempo" aria-hidden="true">
+            <span class="label">Tempo</span>
+            <span class="n" id="tnum">1</span>
+            <span class="d" id="tdir">→ andata</span>
+            <span class="c">4″ in andata<br>4″ in ritorno</span>
+        </div>
+    </div>
+    <div class="choice">
+        <span class="choice-l label">Scegli come allenarti</span>
+        <a class="choice-o" href="#home"><span class="choice-k">Personal Training</span><span class="choice-d">Uno a uno · Via Agri 15</span><span class="choice-a">→</span></a>
+        <a class="choice-o on" href="#l-metodo"><span class="choice-k">Lagree</span><span class="choice-d">Classi da sei · apertura <span data-cfg="apertura">primo trimestre 2027</span></span><span class="choice-a">↓</span></a>
+    </div>
+</header>
+
+<section class="lg-sec alt" id="l-pilates">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">Mettiamolo in chiaro</span>
+            <h2>Non è Pilates. <em>È Lagree.</em></h2>
+            <p class="intro">La macchina ricorda un reformer, e il Pilates lo conoscono tutti. Per questo partiamo da lì: stesso controllo del movimento, tutt'altra intensità.</p>
+        </div>
+        <div class="lg-vs reveal">
+            <div class="lg-vs-h"><span></span><span>Pilates</span><span class="l">Lagree</span></div>
+            <div><span class="k">Ritmo</span><span>Fluido, guidato dal respiro</span><span class="l">Lentissimo: 4 secondi ad andare, 4 a tornare</span></div>
+            <div><span class="k">Pause</span><span>Tra un esercizio e l'altro</span><span class="l">Quasi nessuna: il muscolo resta sotto tensione</span></div>
+            <div><span class="k">Obiettivo</span><span>Controllo, postura, mobilità</span><span class="l">Forza, resistenza e tono</span></div>
+            <div><span class="k">Intensità</span><span>Dolce o media</span><span class="l">Alta, a basso impatto</span></div>
+            <div><span class="k">Come esci</span><span>Disteso</span><span class="l">Con le gambe che tremano</span></div>
+        </div>
+        <p class="lg-vs-note reveal">Fai già Pilates? Parti in vantaggio: il controllo ce l'hai. Qui ci aggiungi tutto il resto.</p>
+    </div>
+</section>
+
+<section class="lg-sec" id="l-metodo">
+    <img src="assets/logo-x.png" class="about-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">Il metodo</span>
+            <h2>Lento non vuol dire <em>facile</em></h2>
+            <p class="intro">Il Lagree è stato creato a Los Angeles da Sebastien Lagree e si pratica su macchine progettate per questo metodo. Lo insegnano solo trainer certificati.</p>
+        </div>
+        <div class="lg-pillars">
+            <div class="lg-pillar reveal"><div class="v">8″<small>a ripetizione</small></div><h4>Tempo lento</h4><p>Ogni ripetizione dura otto secondi o più. Il movimento controllato tiene il muscolo al lavoro dall'inizio alla fine.</p></div>
+            <div class="lg-pillar reveal d1"><div class="v">60″<small>a esercizio</small></div><h4>Tensione continua</h4><p>Ogni esercizio tiene il muscolo sotto carico per circa un minuto, poi si passa al successivo senza pause lunghe.</p></div>
+            <div class="lg-pillar reveal d2"><div class="v">Dolce<small>sulle articolazioni</small></div><h4>Basso impatto</h4><p>La resistenza arriva dalle molle e la macchina guida il movimento: un lavoro intenso e delicato con le articolazioni.</p></div>
+            <div class="lg-pillar reveal d3"><div class="v">50′</div><h4>Tutto il corpo</h4><p>Core, gambe, glutei e braccia nella stessa lezione, con il fiato che lavora per tutta la durata.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="prima" id="l-tempo">
+    <img src="assets/logo-x.png" class="prima-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="prima-grid">
+            <div>
+                <div class="prima-badge">Prova adesso, senza macchina</div>
+                <h2>Senti il <em>tempo.</em></h2>
+                <p class="prima-copy">Mettiti in piedi. Scendi in squat seguendo il cerchio e risali con lo stesso ritmo. Tre ripetizioni, senza fermarti in alto: dura 24 secondi.</p>
+                <p class="prima-copy">Sulla macchina il ritmo è lo stesso. Le molle aggiungono resistenza e la serie continua.</p>
+                <p class="prima-hook" id="tdone" hidden>Fatto. Questo è il ritmo di una lezione Lagree: lento, continuo, sempre sotto controllo.</p>
+                <button class="btn btn-orange" id="tbtn" type="button">Inizia</button>
+            </div>
+            <div class="ring" aria-live="polite">
+                <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="r-track" cx="100" cy="100" r="88"/><circle class="r-prog" id="rprog" cx="100" cy="100" r="88" stroke-dasharray="552.92" stroke-dashoffset="552.92"/></svg>
+                <div class="ring-in"><span class="ph" id="rphase">Una ripetizione</span><span class="n" id="rnum">8″</span><span class="rp" id="rrep">4″ giù · 4″ su</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services" id="l-perchi">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">Per chi è</span>
+            <h2>Un allenamento <em>completo</em></h2>
+            <p class="intro">In 50 minuti lavori su forza, resistenza, tono e core. Funziona per obiettivi e livelli diversi.</p>
+        </div>
+        <div class="svc-grid four">
+            <div class="svc reveal"><div class="svc-num">01</div><h3>Hai poco tempo</h3><p>Tutto il corpo in 50 minuti, con una struttura che non lascia tempi morti.</p></div>
+            <div class="svc reveal d1"><div class="svc-num">02</div><h3>Parti da zero</h3><p>Le lezioni Base insegnano la macchina e il ritmo. Le molle si regolano sul tuo livello.</p></div>
+            <div class="svc reveal d2"><div class="svc-num">03</div><h3>Ti alleni già</h3><p>Tempo lento e tensione continua sono uno stimolo nuovo anche per chi si allena da anni.</p></div>
+            <div class="svc reveal d3"><div class="svc-num">04</div><h3>Vuoi proteggere le articolazioni</h3><p>Molle e movimenti guidati danno un lavoro intenso con un impatto delicato su ginocchia e schiena.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="lg-sec" id="l-trainer">
+    <img src="assets/logo-x.png" class="about-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="lg-team">
+            <div class="lg-copy reveal">
+                <div class="sec-head" style="margin-bottom:22px">
+                    <span class="label">Chi insegna</span>
+                    <h2>Insegnato da <em>personal trainer</em></h2>
+                </div>
+                <p>Le classi Lagree sono tenute da trainer Xstamina con certificazione Lagree. Ogni giorno lavorano uno a uno, e portano la stessa attenzione in una classe da sei.</p>
+                <p>La lead trainer è Marlena Krasowska. Gli altri nomi e gli orari arrivano con l'apertura.</p>
+            </div>
+            <div class="lg-team-cards">
+                <div class="tr reveal" data-tr="marlena">
+                    <div class="tr-more">+</div>
+                    <img src="assets/trainer-marlena.jpg" alt="Marlena Krasowska — Lead trainer Lagree Xstamina">
+                    <div class="tr-ov"><div class="tr-role">Lead trainer Lagree</div><div class="tr-name">Marlena Krasowska</div><span class="tr-hint">Scopri di più →</span></div>
+                </div>
+                <div class="tr tr-tbd reveal d1">
+                    <div class="tr-ph">+</div>
+                    <div class="tr-ov"><div class="tr-role">In arrivo</div><div class="tr-name">Il team Lagree</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services" id="l-prima">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">Come iniziare</span>
+            <h2>La tua <em>prima</em> lezione</h2>
+            <p class="intro">La prima lezione segue sempre la stessa sequenza, così sai cosa aspettarti.</p>
+        </div>
+        <ol class="lg-steps">
+            <li class="reveal"><div class="od-step-n">1</div><div><h4>Arrivi 15 minuti prima</h4><p>Così abbiamo il tempo di conoscerti con calma, prima di iniziare.</p></div></li>
+            <li class="reveal d1"><div class="od-step-n">2</div><div><h4>Ci racconti come stai</h4><p>Ci dici di eventuali dolori o infortuni, e adattiamo la lezione a te.</p></div></li>
+            <li class="reveal d2"><div class="od-step-n">3</div><div><h4>Molle regolate con te</h4><p>Ti mostriamo la macchina, impostiamo la resistenza insieme a te e ti facciamo vedere la versione base di ogni esercizio.</p></div></li>
+            <li class="reveal d3"><div class="od-step-n">4</div><div><h4>Nei giorni dopo ti scriviamo</h4><p>Ti spieghiamo cosa senti e perché: i muscoli di solito si fanno sentire tra 24 e 48 ore.</p></div></li>
+        </ol>
+    </div>
+</section>
+
+<section class="openday on" id="l-founding">
+    <img src="assets/logo-x.png" class="openday-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="od-grid">
+            <div>
+                <div class="od-tag"><span></span> Pre-apertura</div>
+                <h2>Lista<em>Founding</em></h2>
+                <div class="od-when"><span data-cfg="posti">20</span> posti da Founder &nbsp;·&nbsp; iscriversi è gratis</div>
+                <p class="od-lead">I Founder sono le prime <span data-cfg="posti">20</span> persone che entrano a far parte dello studio, con vantaggi riservati solo a loro. Chi è in lista viene contattato prima dell'apertura e scopre per primo come diventarlo.</p>
+                <div class="od-facts">
+                    <div class="od-fact"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><b>Ti iscrivi alla lista</b>: è gratis e non ti impegna a niente</span></div>
+                    <div class="od-fact"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><b>Ti contattiamo prima dell'apertura</b>, in ordine di iscrizione</span></div>
+                    <div class="od-fact"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><b>Scopri per primo</b> come diventare Founder</span></div>
+                </div>
+                <p class="od-note">Prima ti iscrivi, prima ti contattiamo.</p>
+            </div>
+            <div>
+                <form class="lg-form" id="join" novalidate>
+                    <div class="lg-hp" aria-hidden="true"><label for="f-sito">Lascia vuoto questo campo</label><input type="text" id="f-sito" name="sito" tabindex="-1" autocomplete="off"></div>
+                    <div class="lg-f"><label for="f-nome">Nome</label><input type="text" id="f-nome" name="nome" autocomplete="given-name" required></div>
+                    <div class="lg-f"><label for="f-tel">WhatsApp</label><input type="tel" id="f-tel" name="telefono" autocomplete="tel" inputmode="tel" required></div>
+                    <div class="lg-f full"><label for="f-email">Email</label><input type="email" id="f-email" name="email" autocomplete="email" required></div>
+                    <fieldset class="lg-f full"><legend>Hai mai fatto Lagree?</legend>
+                        <div class="chips">
+                            <label class="chip"><input type="radio" name="esperienza" id="esp-1" value="Mai provato"><span>Mai provato</span></label>
+                            <label class="chip"><input type="radio" name="esperienza" id="esp-2" value="Faccio Pilates reformer"><span>Faccio Pilates reformer</span></label>
+                            <label class="chip"><input type="radio" name="esperienza" id="esp-3" value="Sì, già provato"><span>Sì, già provato</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="lg-f full"><legend>Quando ti alleneresti?</legend>
+                        <div class="chips">
+                            <label class="chip"><input type="checkbox" name="fascia" id="fa-1" value="7–9"><span>7–9</span></label>
+                            <label class="chip"><input type="checkbox" name="fascia" id="fa-2" value="Pausa pranzo"><span>Pausa pranzo</span></label>
+                            <label class="chip"><input type="checkbox" name="fascia" id="fa-3" value="18–21"><span>18–21</span></label>
+                            <label class="chip"><input type="checkbox" name="fascia" id="fa-4" value="Sabato mattina"><span>Sabato mattina</span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="lg-f full"><legend>Ti alleni già da Xstamina?</legend>
+                        <div class="chips">
+                            <label class="chip"><input type="radio" name="cliente" id="cl-1" value="Sì"><span>Sì</span></label>
+                            <label class="chip"><input type="radio" name="cliente" id="cl-2" value="No"><span>No</span></label>
+                        </div>
+                    </fieldset>
+                    <label class="lg-consent full" for="f-privacy"><input type="checkbox" id="f-privacy" name="privacy" required><span>Ho letto l'<a href="#l-privacy" id="privLink">informativa privacy</a> e accetto di essere contattato per la lista Founding.</span></label>
+                    <label class="lg-consent full" for="f-mkt"><input type="checkbox" id="f-mkt" name="marketing"><span>Voglio ricevere novità e inviti agli eventi (facoltativo).</span></label>
+                    <p class="lg-err full" id="ferr" role="alert"></p>
+                    <button class="btn btn-orange full" type="submit" id="joinBtn">Entra in lista</button>
+                    <details class="lg-privacy full" id="l-privacy">
+                        <summary>Informativa privacy</summary>
+                        <p><b>Titolare del trattamento:</b> Xstamina Training Lab di Emilio Calabrese Violetta, Via Agri 15, 00198 Roma, P.IVA 15951201001, info@xstamina.it.</p>
+                        <p><b>Dati raccolti:</b> nome, numero WhatsApp, email e le risposte che dai nel modulo.</p>
+                        <p><b>Perché li usiamo:</b> per inserirti nella lista Founding e ricontattarti sull'apertura dello studio Lagree. Solo se spunti la seconda casella, anche per inviarti novità e inviti. La base giuridica è il tuo consenso.</p>
+                        <p><b>Conservazione:</b> fino a 24 mesi dall'iscrizione o fino a quando ci chiedi di cancellarli.</p>
+                        <p><b>Chi li vede:</b> solo il personale di Xstamina. I dati sono salvati su Google Workspace (Google Ireland Ltd), che agisce come nostro fornitore. Non li cediamo a terzi.</p>
+                        <p><b>I tuoi diritti:</b> puoi chiedere in ogni momento accesso, correzione o cancellazione dei dati e revocare il consenso scrivendo a info@xstamina.it. Puoi anche presentare reclamo al Garante per la protezione dei dati personali.</p>
+                    </details>
+                </form>
+                <div class="lg-ok" id="ok" hidden tabindex="-1">
+                    <span class="label">Sei in lista</span>
+                    <h3 id="okname">Grazie.</h3>
+                    <p>La tua iscrizione è registrata. Prima dell'apertura ti contattiamo su WhatsApp, in ordine di iscrizione, con tutte le novità riservate alla lista.</p>
+                    <p>Se vuoi, scrivici adesso: così hai già il nostro numero in rubrica.</p>
+                    <a class="btn btn-wa" id="wa" href="https://wa.me/393755703958" target="_blank" rel="noopener"><svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Scrivici su WhatsApp</a>
+                    <p>+39 375 5703958</p>
+                </div>
+                <div class="lg-ok" id="fallback" hidden tabindex="-1">
+                    <span class="label">Manca un ultimo passo</span>
+                    <h3 id="fbname">Conferma su WhatsApp</h3>
+                    <p>Per completare l'iscrizione invia il messaggio WhatsApp già pronto: contiene i dati che hai inserito. Appena lo riceviamo sei in lista.</p>
+                    <a class="btn btn-wa" id="waFb" href="https://wa.me/393755703958" target="_blank" rel="noopener"><svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Invia e conferma l'iscrizione</a>
+                    <p>Se WhatsApp non si apre, scrivi al +39 375 5703958 o a info@xstamina.it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="lg-sec" id="l-faq">
+    <div class="container">
+        <div class="lg-faq">
+            <div class="sec-head reveal" style="margin:0">
+                <span class="label">Domande frequenti</span>
+                <h2>Prima che tu <em>lo chieda</em></h2>
+            </div>
+            <div class="reveal d1">
+                <details><summary>Devo essere già allenato per iniziare?</summary><p>No. Ogni esercizio ha una versione base, le molle si regolano sul tuo livello e per chi inizia ci sono le lezioni Base.</p></details>
+                <details><summary>È come il Pilates?</summary><p>È un metodo diverso, creato da Sebastien Lagree. La macchina ricorda un reformer, ma il Lagree lavora con un tempo molto lento e con il muscolo sempre sotto tensione, per allenare forza e resistenza. Chi fa Pilates ritrova il controllo del movimento e scopre un'intensità diversa.</p></details>
+                <details><summary>Quanto dura una lezione?</summary><p>Circa 50 minuti, tutto il corpo. La prima volta ti chiediamo di arrivare 15 minuti prima.</p></details>
+                <details><summary>Quanto costa?</summary><p>I prezzi li comunichiamo prima dell'apertura. Chi è in lista Founding li riceve per primo.</p></details>
+                <details><summary>Cosa vuol dire essere Founder?</summary><p>I Founder sono le prime <span data-cfg="posti">20</span> persone che entrano a far parte dello studio, con vantaggi riservati solo a loro. Per non perdere il posto basta iscriversi alla lista Founding: prima dell'apertura contattiamo gli iscritti in ordine di arrivo e spieghiamo come funziona. Iscriversi è gratis e non impegna a niente.</p></details>
+                <details><summary>Quando aprite?</summary><p>Nel <span data-cfg="apertura">primo trimestre 2027</span>. Chi è in lista Founding riceve la data esatta per primo.</p></details>
+                <details><summary>Posso fare sia Lagree sia personal training?</summary><p>Sì. Puoi scegliere uno dei due o entrambi, secondo i tuoi obiettivi e il tuo tempo.</p></details>
+                <details><summary>Posso farlo in gravidanza o con mal di schiena?</summary><p>Chiedi prima al tuo medico. Poi parlane con noi: valutiamo insieme come iniziare.</p></details>
+                <details><summary>Dove si trova lo studio Lagree?</summary><p>In Via Topino 33a, nel quartiere Trieste, a pochi minuti da Via Agri 15.</p></details>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <img src="assets/logo-x.png" class="cta-x" alt="" aria-hidden="true">
+    <div class="container">
+        <div class="cta-copy">
+            <span>Hai domande sul Lagree?</span>
+            <h2>Scrivici.<br>Rispondiamo in pochi minuti.</h2>
+        </div>
+        <a class="btn-ondark" href="https://wa.me/393755703958?text=Ciao%21%20Vi%20scrivo%20dalla%20pagina%20LAGREE%20di%20Xstamina%3A%20vorrei%20informazioni%20sul%20Lagree." target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Apri WhatsApp</a>
+    </div>
+</section>
+
+<section class="contact" id="l-contatti">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="label">Dove siamo</span>
+            <h2>Lo studio <em>Lagree</em></h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="ci reveal">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <div><div class="ci-l">Indirizzo</div><div class="ci-v">Via Topino 33a, Roma<br><small>Quartiere Trieste · a pochi minuti da Via Agri 15</small></div></div>
+                </div>
+                <div class="ci reveal d1">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <div><div class="ci-l">Apertura</div><div class="ci-v"><span data-cfg="apertura">primo trimestre 2027</span><br><small>La data esatta arriva prima a chi è in lista</small></div></div>
+                </div>
+                <div class="ci reveal d2">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                    <div><div class="ci-l">Telefono / WhatsApp</div><div class="ci-v"><a href="tel:+393755703958">+39 375 5703958</a></div></div>
+                </div>
+                <div class="ci reveal d3">
+                    <div class="ci-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                    <div><div class="ci-l">Email</div><div class="ci-v"><a href="mailto:info@xstamina.it">info@xstamina.it</a></div></div>
+                </div>
+            </div>
+            <div class="cwa reveal">
+                <h3>Scrivici su WhatsApp</h3>
+                <p>Per domande sul Lagree o sulla lista Founding. Rispondiamo di norma entro pochi minuti.</p>
+                <a class="btn btn-wa" href="https://wa.me/393755703958?text=Ciao%21%20Vi%20scrivo%20dalla%20pagina%20LAGREE%20di%20Xstamina%3A%20vorrei%20informazioni%20sul%20Lagree%20e%20sulla%20lista%20Founding." target="_blank" rel="noopener"><svg class="wa-i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Avvia conversazione</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
 <!-- TRAINER MODAL -->
 <div class="tr-modal" id="trModal" role="dialog" aria-modal="true">
     <div class="tr-modal-box">
@@ -1044,12 +1667,13 @@ footer{background:var(--ink);padding:48px 0 32px;}
         <div class="foot-row">
             <div class="foot-logo">
                 <img src="assets/logo-white.png" alt="Xstamina Training Lab">
-                <p>Studio privato di Personal Training a Coppedè, Roma.</p>
+                <p>Personal Training e Lagree a Roma, zona Coppedè / Trieste.</p>
             </div>
             <ul class="foot-links">
                 <li><a href="#chi-siamo">Chi siamo</a></li>
                 <li><a href="#servizi">Servizi</a></li>
                 <li><a href="#trainer">Trainer</a></li>
+                <li><a href="#lagree">Lagree</a></li>
                 <li><a href="#contatti">Contatti</a></li>
             </ul>
             <div class="foot-social">
@@ -1059,7 +1683,7 @@ footer{background:var(--ink);padding:48px 0 32px;}
         </div>
         <div class="foot-copy">
             <p>© 2025 Xstamina Training Lab® · Via Agri 15, Roma 00198 · P.IVA 15951201001</p>
-            <p>Tutti i diritti riservati</p>
+            <p>Lagree è un marchio di Lagree Fitness · Tutti i diritti riservati</p>
         </div>
     </div>
 </footer>
@@ -1280,6 +1904,236 @@ document.addEventListener('DOMContentLoaded',function(){
         a.addEventListener('click',function(){trackConv(GADS.waLabel);});
     });
 });
+</script>
+
+<script>
+/* ============================================================
+   ⚙️  CONFIG LAGREE — come il CONFIG qui sopra
+============================================================ */
+const LAGREE = {
+    apertura:      "primo trimestre 2027",  // testo mostrato in tutta la parte Lagree
+    postiFounding: 20,
+    /* LISTA FOUNDING: incolla qui l'URL della Web App di Google Apps Script (finisce con /exec).
+       Finché è vuoto, l'iscrizione viene confermata via WhatsApp con i dati precompilati. */
+    formEndpoint:  "https://script.google.com/macros/s/AKfycbwIjTWAmazQgFmnaaIrt0DeTNDDFNIKr8R_ZuKIpxMPK6o9-9VT3BHW3qfjehOlie6LbA/exec",
+    adsLeadLabel:  ""              // etichetta della conversione Google Ads "Iscrizione lista Founding" (da creare dopo la pubblicazione)
+};
+
+(function(){
+    const root = document.documentElement;
+    const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const vPT = document.getElementById('view-pt');
+    const vLG = document.getElementById('view-lagree');
+    const switches = document.querySelectorAll('[data-go]');
+    const fw = document.querySelector('.float-wa');
+    const waPT = fw ? fw.getAttribute('href') : '';
+    const waLG = 'https://wa.me/393755703958?text=' + encodeURIComponent('Ciao! Vi scrivo dalla pagina LAGREE di Xstamina: vorrei informazioni sul Lagree.');
+
+    /* ---- testi da CONFIG ---- */
+    document.querySelectorAll('[data-cfg="apertura"]').forEach(el => el.textContent = LAGREE.apertura);
+    document.querySelectorAll('[data-cfg="posti"]').forEach(el => el.textContent = LAGREE.postiFounding);
+
+    /* ---- scelta Personal Training / Lagree ---- */
+    let firstView = true;
+    function track(name, params){
+        try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch(e){}
+    }
+    function trackView(v){
+        if (firstView){ firstView = false; return; }      // la prima visualizzazione la registra già il tag di Analytics
+        track('page_view', {page_title: v === 'lagree' ? 'Xstamina Lagree' : 'Xstamina Personal Training',
+                            page_location: location.origin + location.pathname + (v === 'lagree' ? '#lagree' : ''),
+                            page_path: location.pathname + (v === 'lagree' ? '#lagree' : '')});
+        try { if (typeof fbq === 'function' && v === 'lagree') fbq('trackCustom', 'VistaLagree'); } catch(e){}
+    }
+    document.addEventListener('click', e => {
+        const a = e.target.closest('a[href]'); if (!a) return;
+        const h = a.getAttribute('href'), sez = root.dataset.view === 'lagree' ? 'lagree' : 'personal_training';
+        if (h.indexOf('wa.me') !== -1) track('contatto_whatsapp', {sezione: sez});
+        else if (h.indexOf('tel:') === 0) track('contatto_telefono', {sezione: sez});
+    });
+    function setView(v){
+        root.dataset.view = v;
+        trackView(v);
+        vPT.hidden = v !== 'pt';
+        vLG.hidden = v !== 'lagree';
+        switches.forEach(b => b.setAttribute('aria-pressed', b.dataset.go === v ? 'true' : 'false'));
+        if (fw) fw.setAttribute('href', v === 'lagree' ? waLG : waPT);
+        if (v === 'lagree') machineStart(); else machineStop();
+    }
+    function go(v, id){
+        setView(v);
+        const el = id ? document.getElementById(id) : null;
+        if (el) el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+        else window.scrollTo(0, 0);
+        try { history.replaceState(null, '', '#' + (id || (v === 'pt' ? 'home' : 'lagree'))); } catch(e){}
+    }
+    switches.forEach(b => b.addEventListener('click', () => {
+        go(b.dataset.go);
+        const mob = document.getElementById('mob');
+        if (mob && mob.classList.contains('open')) document.getElementById('burger').click();
+    }));
+    document.addEventListener('click', e => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        const id = a.getAttribute('href').slice(1);
+        const el = id && document.getElementById(id);
+        if (!el) return;
+        const need = vLG.contains(el) ? 'lagree' : (vPT.contains(el) ? 'pt' : root.dataset.view);
+        if (need !== root.dataset.view){
+            e.preventDefault();
+            go(need, (id === 'home' || id === 'lagree') ? null : id);
+        }
+    });
+
+    /* ---- macchina: carrello 4″ avanti, 4″ indietro ---- */
+    const car = document.getElementById('carriage');
+    const sps = ['sp1','sp2','sp3'].map(id => document.getElementById(id));
+    const tnum = document.getElementById('tnum'), tdir = document.getElementById('tdir');
+    const X0 = 222, X1 = 540, ANCHOR = 210, YS = [190,194,198];
+    function place(x){
+        car.setAttribute('transform', 'translate(' + x.toFixed(1) + ' 0)');
+        sps.forEach((sp, k) => {
+            const y = YS[k], len = x - ANCHOR, n = 16, amp = 1.8;
+            let pts = ANCHOR + ',' + y;
+            for (let i = 1; i < n; i++) pts += ' ' + (ANCHOR + len * i / n).toFixed(1) + ',' + (y + (i % 2 ? -amp : amp));
+            sp.setAttribute('points', pts + ' ' + x.toFixed(1) + ',' + y);
+        });
+    }
+    const ease = t => 0.5 - 0.5 * Math.cos(Math.PI * t);
+    let mraf = null, mt0 = null;
+    function frame(now){
+        if (mt0 === null) mt0 = now;
+        const T = 4000, e = (now - mt0) % (2 * T), fwd = e < T, p = fwd ? e / T : (e - T) / T;
+        place(fwd ? X0 + (X1 - X0) * ease(p) : X1 - (X1 - X0) * ease(p));
+        const c = String(Math.min(4, Math.floor(p * 4) + 1));
+        if (tnum.textContent !== c) tnum.textContent = c;
+        const d = fwd ? '→ andata' : '← ritorno';
+        if (tdir.textContent !== d) tdir.textContent = d;
+        mraf = requestAnimationFrame(frame);
+    }
+    function machineStart(){
+        if (reduce){ place((X0 + X1) / 2); tnum.textContent = '4″'; tdir.textContent = '4″ e 4″'; return; }
+        if (mraf === null){ mt0 = null; mraf = requestAnimationFrame(frame); }
+    }
+    function machineStop(){ if (mraf !== null){ cancelAnimationFrame(mraf); mraf = null; } }
+    place(X0);
+
+    /* ---- prova del tempo: 3 ripetizioni da 4″ giù e 4″ su ---- */
+    const C = 552.92, PH = 4000, REPS = 3;
+    const prog = document.getElementById('rprog'), rphase = document.getElementById('rphase'),
+          rnum = document.getElementById('rnum'), rrep = document.getElementById('rrep'),
+          tbtn = document.getElementById('tbtn'), tdone = document.getElementById('tdone');
+    let running = false, traf = null, s0 = 0;
+    function stopTrial(done){
+        running = false; if (traf) cancelAnimationFrame(traf);
+        tbtn.textContent = done ? 'Ancora una volta' : 'Inizia';
+        if (done){ tdone.hidden = false; prog.setAttribute('stroke-dashoffset', 0); rphase.textContent = 'Fatto'; rnum.textContent = '24″'; rrep.textContent = 'sotto tensione'; }
+        else { prog.setAttribute('stroke-dashoffset', C); rphase.textContent = 'Una ripetizione'; rnum.textContent = '8″'; rrep.textContent = '4″ giù · 4″ su'; }
+    }
+    function tick(now){
+        const el = now - s0;
+        if (el >= PH * 2 * REPS){ stopTrial(true); return; }
+        const idx = Math.floor(el / PH), inPh = (el % PH) / PH;
+        prog.setAttribute('stroke-dashoffset', (C * (1 - inPh)).toFixed(1));
+        rphase.textContent = idx % 2 === 0 ? 'Scendi' : 'Risali';
+        rnum.textContent = String(4 - Math.floor(inPh * 4));
+        rrep.textContent = 'Ripetizione ' + (Math.floor(idx / 2) + 1) + ' di ' + REPS;
+        traf = requestAnimationFrame(tick);
+    }
+    tbtn.addEventListener('click', () => {
+        if (running){ stopTrial(false); return; }
+        running = true; tdone.hidden = true; tbtn.textContent = 'Ferma'; track('lagree_prova_tempo');
+        s0 = performance.now(); traf = requestAnimationFrame(tick);
+    });
+
+    /* ---- lista Founding ----
+       1) invia i dati al Google Sheet e aspetta la conferma del salvataggio
+       2) se il salvataggio non è confermato (o l'URL non è impostato) passa a WhatsApp con tutti i dati:
+          nessuna iscrizione va persa in silenzio */
+    const form = document.getElementById('join'), ferr = document.getElementById('ferr'), jbtn = document.getElementById('joinBtn');
+    const WA_NUM = 'https://wa.me/393755703958?text=';
+    let sending = false;
+    document.getElementById('privLink').addEventListener('click', e => {
+        e.preventDefault();
+        const d = document.getElementById('l-privacy'); d.open = true; d.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'center'});
+    });
+    function showPanel(id){
+        form.hidden = true;
+        const p = document.getElementById(id); p.hidden = false; p.focus({preventScroll:true});
+        p.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'center'});
+    }
+    function trackLead(){
+        try { if (typeof gtag === 'function'){ gtag('event', 'generate_lead', {form: 'lista_founding_lagree'});
+              if (LAGREE.adsLeadLabel) gtag('event', 'conversion', {send_to: 'AW-10893098718/' + LAGREE.adsLeadLabel}); } } catch(e){}
+        try { if (typeof fbq === 'function') fbq('track', 'Lead', {content_name: 'Lista Founding Lagree'}); } catch(e){}
+    }
+    form.addEventListener('submit', async ev => {
+        ev.preventDefault();
+        if (sending) return;
+        const fd = new FormData(form);
+        const d = {
+            nome: String(fd.get('nome') || '').trim(),
+            telefono: String(fd.get('telefono') || '').trim(),
+            email: String(fd.get('email') || '').trim(),
+            esperienza: String(fd.get('esperienza') || ''),
+            fasce: fd.getAll('fascia').join(', '),
+            cliente: String(fd.get('cliente') || ''),
+            privacy: document.getElementById('f-privacy').checked,
+            marketing: document.getElementById('f-mkt').checked,
+            sito: String(fd.get('sito') || ''),
+            pagina: 'xstamina.it — Lagree'
+        };
+        if (!d.nome){ ferr.textContent = 'Scrivi il tuo nome.'; document.getElementById('f-nome').focus(); return; }
+        if (d.telefono.replace(/\D/g, '').length < 8){ ferr.textContent = 'Serve un numero WhatsApp valido: ti ricontattiamo lì.'; document.getElementById('f-tel').focus(); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)){ ferr.textContent = "Controlla l'email: manca qualcosa."; document.getElementById('f-email').focus(); return; }
+        if (!d.privacy){ ferr.textContent = "Per entrare in lista serve il consenso all'informativa privacy."; return; }
+        ferr.textContent = '';
+        track('lista_founding_invio');
+        const waFull = WA_NUM + encodeURIComponent('LISTA FOUNDING LAGREE — confermo la mia iscrizione.\nNome: ' + d.nome + '\nWhatsApp: ' + d.telefono + '\nEmail: ' + d.email +
+            '\nEsperienza: ' + (d.esperienza || 'non indicata') + '\nFasce: ' + (d.fasce || 'non indicate') + '\nGià cliente Xstamina: ' + (d.cliente || 'non indicato') +
+            '\nNovità e inviti: ' + (d.marketing ? 'sì' : 'no'));
+        let saved = false;
+        if (LAGREE.formEndpoint){
+            sending = true; jbtn.disabled = true; jbtn.textContent = 'Invio in corso…';
+            try {
+                const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 15000);
+                const res = await fetch(LAGREE.formEndpoint, {method: 'POST', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: JSON.stringify(d), signal: ctl.signal});
+                clearTimeout(to);
+                const out = await res.json();
+                saved = !!(out && out.ok === true);
+            } catch(e){ saved = false; }
+            sending = false; jbtn.disabled = false; jbtn.textContent = 'Entra in lista';
+        }
+        if (saved){
+            trackLead();
+            document.getElementById('okname').textContent = 'Grazie, ' + d.nome + '.';
+            document.getElementById('wa').href = WA_NUM + encodeURIComponent('Ciao! Vi scrivo dalla pagina LAGREE di Xstamina: sono ' + d.nome + ', ho appena compilato il modulo della lista Founding.');
+            showPanel('ok');
+        } else {
+            document.getElementById('fbname').textContent = d.nome + ', conferma su WhatsApp';
+            document.getElementById('waFb').href = waFull;
+            track('lista_founding_fallback_whatsapp');
+            showPanel('fallback');
+        }
+    });
+
+    /* ---- scheda trainer aperta dalla parte Lagree: messaggio Lagree, non personal ---- */
+    document.querySelectorAll('#view-lagree .tr[data-tr]').forEach(c => c.addEventListener('click', () => {
+        const a = document.querySelector('#tmActions .btn-wa');
+        if (!a) return;
+        const name = document.getElementById('tmName').textContent;
+        a.href = 'https://wa.me/393755703958?text=' + encodeURIComponent('Ciao! Vi scrivo dalla pagina LAGREE di Xstamina: vorrei informazioni sulle lezioni Lagree con ' + name + '.');
+        a.textContent = 'Chiedi del Lagree';
+    }));
+
+    /* ---- avvio: #lagree o un'ancora Lagree aprono direttamente il Lagree ---- */
+    const h = (location.hash || '').slice(1);
+    const target = h && document.getElementById(h);
+    if (target && vLG.contains(target)){
+        setView('lagree');
+        if (h !== 'lagree') target.scrollIntoView();
+    } else setView('pt');
+})();
 </script>
 </body>
 </html>
